@@ -1,0 +1,24 @@
+<!-- 추가 -->
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css연결 -->
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/diary.css' %}">
+    <title>Document</title>
+</head>
+<body>    
+<div class="top_content">
+<button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+</div>
+<h2>다이어리</h2>
+
+
+</body>
+</html>
