@@ -19,11 +19,14 @@
 </div>
 <h2>다이어리</h2>
 
-<a href= "{% provider_login_url 'kakao' %}">카카오 로그인</a>
+<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'capture.JPG' %}">
+
+</a>
 
 {% if user.is_authenticated %}
 <br>유저 이름: {{user.username}}
 {% endif %}
+
 
 </body>
 </html>
