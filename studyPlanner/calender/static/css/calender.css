@@ -1,0 +1,20 @@
+*{
+    margin: 0px;
+}
+
+.calender_container{
+
+}
+
+
+.calender_row{
+     display: flex;
+
+}
+
+.daily_container  {
+    /* display:inline-block;  */
+    width:10vw;
+    height:10vh;
+border-style: solid;
+}
