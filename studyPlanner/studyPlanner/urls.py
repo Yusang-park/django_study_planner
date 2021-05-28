@@ -21,7 +21,8 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     
     path('', include('diary.urls')),
-    path('calender/', include('calender.urls'))
+    path('calender/', include('calender.urls')),
+    path('community/',include('community.urls')),
 ]
 
 

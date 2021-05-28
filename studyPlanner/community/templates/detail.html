@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    제목 : {{my_write.title}}
+    <br><br>내용 : {{my_write.contents}}
+    <br><br>날짜 : {{my_write.updated_at}}
+    <h2>여기부터는 댓글</h2><hr>
+    {% if user.is_authenticated %}
+    <form method='POST' action="{% url 'community:create_comment' my_write.id %}">
+        {% csrf_token %}
+        {{comment_form}}
+        <button type='submit'>댓글 작성</button>
+    </form>
+    {% endif %}
+    {% for comment in comments %}
+    <h3>{{comment.user}}</h3>
+    {{comment.content}}//<a href="{% url 'community:delete_comment' write_id=my_write.id comment_id=comment.id %}">삭제하기</a>
+    <hr>
+    {% endfor %}
+</body>
+</html>

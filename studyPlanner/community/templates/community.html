@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Community !</h1>
+    <button type="button" class="create-btn"><a href="{% url 'community:create' %}">글 작성</a></button>
+    
+
+    {% for write in all_write %}
+    <a href="{% url 'community:detail' write.id %}">
+        <div class='all_write'>
+            {{write.id}}&nbsp
+            {{write.title}}&nbsp
+            {{write.updated_at}}
+        </div>
+    </a>
+    <div class='update-delete'>
+        <a href="{% url 'community:update' write.id %}">수정하기</a>
+        <a href="{% url 'community:delete' write.id %}">삭제하기</a>
+    </div>
+    {% endfor %}
+</body>
+</html>
