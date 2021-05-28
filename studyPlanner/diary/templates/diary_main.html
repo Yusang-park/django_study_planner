@@ -14,10 +14,15 @@
     <title>Document</title>
 </head>
 <body>    
-<div class="top_content">
-<button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
-</div>
-<h2>다이어리</h2>
+    <div class="top_content">
+    <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+    </div>
+    <h2>다이어리</h2>
+
+    {{daily_form.as_p}}
+    {{todothing_form}}
+
+
 
 
 </body>

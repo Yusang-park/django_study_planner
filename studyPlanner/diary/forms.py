@@ -4,14 +4,14 @@ from django import forms
 class DailyForm(forms.ModelForm):
     class Meta:
         model = Daily
-        fields = ['goal','date','studytime','feelings','d_day']
+        fields = ['goal','studytime','feelings','d_day']
 
 class TodothingForm(forms.ModelForm):
     class Meta:
-        models = Todothing
+        model = Todothing
         fields = ['todothing','checkbox']
 
 class CheckpointForm(forms.ModelForm):
     class Meta:
-        models = Checkpoint
+        model = Checkpoint
         fields = ['checkthing']
