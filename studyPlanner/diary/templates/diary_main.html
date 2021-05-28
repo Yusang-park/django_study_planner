@@ -19,9 +19,9 @@
 </div>
 <h2>다이어리</h2>
 
-<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}">
+<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
 
-</a>
+<button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
 
 {% if user.is_authenticated %}
 <br>유저 이름: {{user.username}}
