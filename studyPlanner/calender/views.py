@@ -6,9 +6,11 @@ from django.utils import timezone
 def calender(request):
     year = timezone.now().year
     month = timezone.now().month
-    properties = {'year': year, 'month': month, }
-    return render(request, 'calender.html', properties)
+    context = {'year': year, 'month': month, 'previous_year' : year-1, 'next_year' : year+1}
+    return render(request, 'calender.html', context)
 
 
-def changeMonth(request, year,month):
-    return render(request, 'calender.html', properties)
+def change_calender(request, year, month):
+    context={'year' : year, 'month' : month, 'previous_year' : year-1, 'next_year' : year+1}
+    return render(request, 'calender.html',context)
+

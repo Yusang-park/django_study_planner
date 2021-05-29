@@ -1,5 +1,5 @@
+{% load filters %}
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,35 +13,22 @@
     <title>Document</title>
 
 </head>
-<body>  
-    <h2><script>getCurrentMonth()</script>, 
-    <script>getCurrentYear()</script><h2>
+<body>
+
+
+<a href="{% url 'calender:calender' %}">현재로</a>
+
+<a href="{% url 'calender:change_calender' year=previous_year month=1 %}">{{previous_year}}</a>
+
+{% for value in 13|ranges %}
+  <button type="button"><a href="{% url 'calender:change_calender' year=year month=value %}">{{value}}</a></button>
+{% endfor %}
+
+<a href="{% url 'calender:change_calender' year=next_year month=1 %}">{{next_year}}</a>
+
+
     <script>
-    let weeknameOfFirstDay = getWeeknameIndex(1);
-    let dayIndex = '';
-    let monthDayLength = getMonthDayLength(new Date().getMonth());
-    let loop = true;
-    
-    while(loop){
-        document.write('<div class="calender_row">');
-        for(let i =0; i<7; i++){
-            if(dayIndex =='' && i == weeknameOfFirstDay && loop){
-            dayIndex = 1;           
-            }
-            document.write("<span class='daily_container' id='daily_container_' + i + '_' + j>"+dayIndex+"</span>");
-            if(dayIndex > 0 && dayIndex<monthDayLength){
-            dayIndex++;
-            }else if (dayIndex == monthDayLength){
-                dayIndex = '';
-                loop = false;
-            }
-        }
-        document.write('</div>');
-        document.write("<br>");
-    }
-
-
+        initCalender({{year}}, {{month}})
     </script>
-
 </body>
 </html>

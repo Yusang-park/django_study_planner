@@ -2,18 +2,19 @@
     margin: 0px;
 }
 
-.calender_container{
-
+.weekname_container_0{
+    background-color: red;
+}
+.weekname_container_6{
+    background-color: blue;
 }
 
-
 .calender_row{
-     display: flex;
-
+    margin:0px;
+    display: flex;
 }
 
 .daily_container  {
-    /* display:inline-block;  */
     width:10vw;
     height:10vh;
 border-style: solid;

@@ -4,7 +4,7 @@ from django.urls import path
 app_name = "calender"
 
 urlpatterns = [
-    path('calender/', views.calender, name="calender"),
-
-    # path('signin/', views.signin, name="signin")
+    path('', views.calender, name="calender"),
+    path('<int:year>/<int:month>/', views.change_calender, name="change_calender"),
+    
 ]
