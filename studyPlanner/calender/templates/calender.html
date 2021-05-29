@@ -1,0 +1,34 @@
+{% load filters %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css연결 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calender.css' %}">
+    <!-- js 연결 -->    
+    <script src="{% static 'js/calender.js' %}"></script>
+    <title>Document</title>
+
+</head>
+<body>
+
+
+<a href="{% url 'calender:calender' %}">현재로</a>
+
+<a href="{% url 'calender:change_calender' year=previous_year month=1 %}">{{previous_year}}</a>
+
+{% for value in 13|ranges %}
+  <button type="button"><a href="{% url 'calender:change_calender' year=year month=value %}">{{value}}</a></button>
+{% endfor %}
+
+<a href="{% url 'calender:change_calender' year=next_year month=1 %}">{{next_year}}</a>
+
+
+    <script>
+        initCalender({{year}}, {{month}})
+    </script>
+</body>
+</html>
