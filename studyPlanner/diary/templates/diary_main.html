@@ -20,11 +20,6 @@
     </div>
     <h2>다이어리</h2>
 
-    {{user}}
-
-    {%if message%}
-    {{message}}
-    {% endif %}
 
     <form action="{% url 'diary:diary' %}" method="POST">
         {% csrf_token %}

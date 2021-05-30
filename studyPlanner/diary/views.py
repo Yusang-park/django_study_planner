@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 # Create your views here.
 def diary(request):
     user = request.user
-    message = ''
     d_day = Profile.objects.get(user = request.user)
     if request.method == 'POST':
         daily_form = DailyForm(request.POST)
@@ -16,12 +15,9 @@ def diary(request):
             todothing_form.save()
             daily_form.save()
             return redirect('diary:diary')
-        else:
-            message = 'fail'
-            print(message)
     daily_form = DailyForm()
     todothing_form = TodothingForm()
-    return render(request, 'diary_main.html',{"daily_form":daily_form,"todothing_form":todothing_form,"message":message,"user":user,"d_day":d_day} )
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"todothing_form":todothing_form,"user":user,"d_day":d_day} )
 
 def setDday(request):
     if request.method == 'POST':
