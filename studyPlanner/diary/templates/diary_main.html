@@ -16,14 +16,60 @@
 <body>    
     <div class="top_content">
     <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+    <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
     </div>
     <h2>다이어리</h2>
 
-    {{daily_form.as_p}}
-    {{todothing_form}}
+    {{user}}
 
+    {%if message%}
+    {{message}}
+    {% endif %}
 
+    <form action="{% url 'diary:diary' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <div>오늘의 목표</div>
+            {{daily_form.goal}}
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>공부시간</div>
+            {{daily_form.studytime_h}}시간 {{daily_form.studytime_m}}분
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>남은 날짜</div>
+            <div id = "today"></div>
+            <script type = "text/javascript">
+                var today = new Date();
+                var goalday = "{{d_day.goal_day}}";
+                var goalday = new Date(goalday);
 
-
+                var todayMilli = today.getTime();
+                var goalMilli = goalday.getTime();
+                var clacDay = 24*3600*1000;
+                var remainday = Math.round((goalMilli - todayMilli)/clacDay);
+                document.querySelector("#today").innerHTML = "D-"+remainday; 
+            </script>
+          
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>할 일</div>
+            {{todothing_form.todothing}}
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>오늘의 일기</div>
+            {{daily_form.feelings}}
+        </div>
+        
+        <button type="submit">저장</button>
+    </form>
 </body>
 </html>
