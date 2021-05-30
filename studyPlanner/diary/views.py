@@ -35,7 +35,7 @@ def checkedTodo(request):
         todo_list = get_object_or_404(Todothing, pk=id)
         # 체크된 것을 True로 바꿔주기
         todo_list.checkbox = True
-    todo_list.save() # 모델의 필드 저장
+        todo_list.save() # 모델의 필드 저장
     return redirect('diary:diary')
 
 
