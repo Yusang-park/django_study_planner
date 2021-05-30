@@ -18,7 +18,35 @@
 <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
 </div>
 <h2>다이어리</h2>
-
+    
+    <!-- 공부 계획 -->
+    <form action="{% url 'diary:checkedTodo' %}" method="POST">
+        {% csrf_token %}
+        <ol>
+            {% for todo_list in todo_lists %}
+            <li>
+                <!-- 할 일 이름 -->
+                {{ todo_list.todothing }} 
+                <!-- 체크 박스. True면 체크박스가 체크된 상태로 표시, False면 체크 안된 상태로 표시 -->
+                {% if todo_list.checkbox %}
+                <input type="checkbox" id ="checked" name="checked" checked value="{{ todo_list.id }}">
+                {% else %}
+                <input type="checkbox" id ="checked" name="checked" value="{{ todo_list.id }}">
+                {% endif %}
+            </li> 
+            {% endfor %}
+        </ol>   
+        <input type="submit" value="수정">
+    </form>
+    
+    <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
+    <form action="{% url 'diary:addTodo' %}" method="POST">
+        {% csrf_token %}
+        <!-- 공부 계획 입력하기 -->
+        {{ todo_form.todothing }} 
+        <input type="submit" value="추가">
+    </form>
+    
 
 </body>
 </html>

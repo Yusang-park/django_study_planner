@@ -5,4 +5,6 @@ app_name = "diary"
 
 urlpatterns = [
     path('', views.diary, name="diary"),
+    path('addTodo/', views.addTodo, name='addTodo'),
+    path('checkedTodo', views.checkedTodo, name='checkedTodo'),
 ]

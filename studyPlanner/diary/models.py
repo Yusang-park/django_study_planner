@@ -1,12 +1,14 @@
+from tabnanny import check
 from django.db import models
 from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
+from django.forms import CheckboxInput, widgets
 
 # Create your models here.
 class Daily(models.Model):
     user = models.ForeignKey(User,related_name='daily',on_delete=CASCADE)
     goal = models.CharField(max_length=100)
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True) 
 
     #The default form widget for this field is a single DateTimeInput.
     #The admin uses two separate TextInput widgets with JavaScript shortcuts.
@@ -24,7 +26,7 @@ class Daily(models.Model):
 
 
 class Todothing(models.Model):
-    day = models.ForeignKey(Daily,related_name='todothing',on_delete=CASCADE)
+    day = models.ForeignKey(Daily,related_name='todothing',on_delete=models.SET_NULL,null=True)
     todothing = models.CharField(max_length=50)
 
     #The default form widget for this field is CheckboxInput, or NullBooleanSelect if null=True.
