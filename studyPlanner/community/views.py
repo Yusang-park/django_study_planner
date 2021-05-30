@@ -43,7 +43,6 @@ def delete(request,write_id):
 def create_comment(request,write_id):
         if request.method == "POST":
             comment = CommentForm(request.POST)
-        
             if comment.is_valid():
                 form = comment.save(commit=False)
                 user = request.user

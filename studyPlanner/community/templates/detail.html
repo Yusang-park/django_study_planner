@@ -9,8 +9,8 @@
 <body>
     제목 : {{my_write.title}}
     <br><br>내용 : {{my_write.contents}}
-    <br><br>날짜 : {{my_write.updated_at}}
-    <h2>여기부터는 댓글</h2><hr>
+    <br><br>날짜 : {{my_write.updated_at|date:"Y.m.d"}}
+    <h2>comment</h2><hr>
     {% if user.is_authenticated %}
     <form method='POST' action="{% url 'community:create_comment' my_write.id %}">
         {% csrf_token %}
