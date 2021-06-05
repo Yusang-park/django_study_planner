@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-# ㅘㅗㅓㅗㅓㅏㅘ치 ㅏ 처ㅏㅣcvvcvcvcfdsvdfvdsfvfsdv
 from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +24,7 @@ SECRET_KEY = 'django-insecure-)my^91tsi1^ch^b0&hqek%n#&$4-xc4&u$#&jk-3)7-0x*0^o$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,12 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrap4',
+    #app
     'diary',
     'calender',
-    'accounts',
     'community',
-
-    #소셜 로그인
+    'profileapp',
+    #social_login
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -66,7 +66,7 @@ ROOT_URLCONF = 'studyPlanner.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -131,7 +131,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')]
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')<= 배포단계에서 사용하면됨 collectstatic을 하기위해 지정해주는 경로
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 MEDIA_URL = "/media/"
@@ -152,4 +154,3 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
-

@@ -1,11 +1,18 @@
 from django.shortcuts import render,redirect
 from django.contrib import auth
+from django.contrib.auth.models import User
+from django.views.generic import DetailView
+from .decorators import diary_ownership_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-def diary(request):
-    #서버의 write 클래스 정보를 모두 가져온다.
-    return render(request, 'diary_main.html')
+has_ownership = [diary_ownership_required,login_required]
 
-def logout(request):
-    auth.logout(request)
-    return redirect('diary:diary')
+@method_decorator(has_ownership,'get')
+class DiaryDetailView(DetailView):
+    model = User
+    context_object_name = 'target_diary'
+    template_name = 'diary/index.html'
+    # def get_context_data(self,**kwargs):
+

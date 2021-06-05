@@ -1,0 +1,25 @@
+
+<div class="diary_header">
+    <div>
+        <h1 class="diary_logo">No Plan</h1>
+    </div>
+    <div class="diary_header_navbar">
+        <a href="{% url 'community:community' %}" class="diary_header_nav">
+       <span>
+           community
+       </span>
+       </a>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'profileapp:login'%}?next={{request.path}}" class="diary_header_nav">
+            <span>Login</span>
+        </a>
+        {% else %}
+        <a href="{% url 'diary:detail' pk=user.pk %}" class="diary_header_nav">
+            <span>My diary</span>
+        </a>
+        <a href="{% url 'profileapp:logout' %}?next={{request.path}}" class="diary_header_nav">
+            <span>Logout</span>
+        </a>
+        {% endif %}
+    </div>
+</div>

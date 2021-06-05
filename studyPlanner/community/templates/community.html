@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
     <h1>Community !</h1>
     <button type="button" class="create-btn"><a href="{% url 'community:create' %}">글 작성</a></button>
     <hr>
@@ -25,6 +19,4 @@
         <a href="{% url 'community:delete' write.id %}">삭제하기</a>
     </div>
     {% endfor %}
-</body>
-</html>
-
+{% endblock %}

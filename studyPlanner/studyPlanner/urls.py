@@ -18,11 +18,11 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
-    path('', include('diary.urls')),
+    path('diary/',include('diary.urls')),
     path('calender/', include('calender.urls')),
-    
-    path('community/',include('community.urls')),
+    path('',include('community.urls')),
+    path('profileapp/',include('profileapp.urls')),
+    #allauth
     path('accounts/', include('allauth.urls')),
 ]
 

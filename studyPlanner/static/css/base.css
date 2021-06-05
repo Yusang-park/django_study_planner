@@ -1,0 +1,20 @@
+.diary_logo{
+    font-family:'Lobster',cursive;
+}
+.diary_header{
+    text-align: center;
+}
+.diary_header_navbar{
+    margin-top: 1rem;
+}
+.diary_header_nav{
+    margin:0.5rem;
+}
+a:hover{
+    color:black;
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+    color:black;
+}

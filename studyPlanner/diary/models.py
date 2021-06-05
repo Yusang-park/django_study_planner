@@ -3,11 +3,11 @@ from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
 
 # Create your models here.
+
 class Daily(models.Model):
     user = models.ForeignKey(User,related_name='daily',on_delete=CASCADE)
     goal = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
-
     #The default form widget for this field is a single DateTimeInput.
     #The admin uses two separate TextInput widgets with JavaScript shortcuts.
     studytime = models.DateTimeField() 
@@ -21,7 +21,6 @@ class Daily(models.Model):
 
     def __str__(self):
         return self.date
-
 
 class Todothing(models.Model):
     day = models.ForeignKey(Daily,related_name='todothing',on_delete=CASCADE)

@@ -4,7 +4,7 @@ from django.urls import path
 app_name = "community"
 
 urlpatterns = [
-    path('community/', views.community, name="community"),
+    path('', views.community, name="community"),
     path('create/',views.create,name='create'),
     path('detail/<int:write_id>',views.detail,name='detail'),
     path('update/<int:write_id>',views.update,name='update'),

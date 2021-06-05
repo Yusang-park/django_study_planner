@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+{% block content %}
+<div style="height:400px; justify-content: center; align-items: center; display: flex;">
+<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
+</div>
+{% if user.is_authenticated %}
+<br>유저 이름: {{user.username}}
+{% endif %}
+
+{% endblock %}
