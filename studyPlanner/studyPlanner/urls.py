@@ -22,8 +22,10 @@ urlpatterns = [
     path('calender/', include('calender.urls')),
     path('',include('community.urls')),
     path('profileapp/',include('profileapp.urls')),
+    path('favoriteapp/',include('favoriteapp.urls')),
     #allauth
     path('accounts/', include('allauth.urls')),
+    
 ]
 
 

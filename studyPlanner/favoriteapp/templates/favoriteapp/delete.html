@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="text-align: center; margin: 4rem auto; max-width: 500px;">
+    <div class="mb-4">
+        <h4>Delete Favorite</h4>
+    </div>
+    <form action="{% url 'favoriteapp:delete' pk=target_favorite.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger rounded-pill col-6 mt-3">
+    </form>
+</div>
+{% endblock %}

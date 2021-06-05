@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'calender',
     'community',
     'profileapp',
+    'favoriteapp',
     #social_login
     'django.contrib.sites',
     'allauth',

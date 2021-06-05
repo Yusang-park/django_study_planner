@@ -4,4 +4,13 @@
 
 {% block content %}
 <p>{{user.username}}의 다이어리</p>
+<a href="{% url 'favoriteapp:create' %}">
+    즐겨찾기 등록
+</a>
+{% for favorite in target_diary.favorite.all %}
+<p>사이트명:<a href="{{favorite.link}}">{{favorite.title}}</a></p>
+<a href="{% url 'favoriteapp:delete' pk=favorite.pk %}">
+    삭제
+</a>
+{% endfor %}
 {% endblock %}

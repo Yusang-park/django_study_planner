@@ -1,0 +1,13 @@
+{% load bootstrap4 %}
+{% block content %}
+<div style="margin:0 auto; width: 50%;">
+    <div class="mb-4">
+        <h4>Create Favorite</h4>
+    <form action="{% url 'favoriteapp:create' %}" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
+    </form>
+    </div>
+</div>
+{% endblock %}
