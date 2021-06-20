@@ -39,6 +39,13 @@
         </ol>   
         <input type="submit" value="수정">
     </form>
+    <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
+    <form action="{% url 'diary:addTodo' %}" method="POST">
+        {% csrf_token %}
+        <!-- 공부 계획 입력하기 -->
+        {{ todo_form.todothing }} 
+        <input type="submit" value="추가">
+    </form>
    
     
 
@@ -61,13 +68,7 @@
 
 
 
-    <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
-    <form action="{% url 'diary:addTodo' %}" method="POST">
-        {% csrf_token %}
-        <!-- 공부 계획 입력하기 -->
-        {{ todo_form.todothing }} 
-        <input type="submit" value="추가">
-    </form>
+
     
 
     <form action="{% url 'diary:diary' %}" method="POST">
