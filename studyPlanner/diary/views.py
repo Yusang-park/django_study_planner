@@ -16,11 +16,23 @@ def diary(request):
     todo_lists = Todothing.objects.all()
     todo_form = TodothingForm()
     #서버의 write 클래스 정보를 모두 가져온다.
-
-    return render(request, 'diary_main.html', {
-        'todo_lists' : todo_lists,
-        'todo_form' : todo_form,
-    })
+    user = request.user
+    if user.is_authenticated:
+        d_day = Profile.objects.get(user = request.user)
+             
+    else:
+        d_day = 0       
+    if request.method == 'POST':
+        daily_form = DailyForm(request.POST)
+        todothing_form = TodothingForm(request.POST)
+        if daily_form.is_valid():
+            todothing_form.save()
+            daily_form.save()
+            return redirect('diary:diary')
+    daily_form = DailyForm()
+    todothing_form = TodothingForm()
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"todothing_form":todothing_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
+        'todo_form' : todo_form,} )
 
 def addTodo(request):
     if request.method == 'POST':
@@ -53,23 +65,7 @@ def checkedTodo(request):
 
         
     
-    return render(request, 'diary_main.html')
-    user = request.user
-    if user.is_authenticated:
-        d_day = Profile.objects.get(user = request.user)
-             
-    else:
-        d_day = 0       
-    if request.method == 'POST':
-        daily_form = DailyForm(request.POST)
-        todothing_form = TodothingForm(request.POST)
-        if daily_form.is_valid():
-            todothing_form.save()
-            daily_form.save()
-            return redirect('diary:diary')
-    daily_form = DailyForm()
-    todothing_form = TodothingForm()
-    return render(request, 'diary_main.html',{"daily_form":daily_form,"todothing_form":todothing_form,"user":user,"d_day":d_day} )
+    
 
 def setDday(request):
     if request.method == 'POST':
