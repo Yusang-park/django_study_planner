@@ -8,7 +8,11 @@ from django.contrib import auth
 # Create your views here.
 def diary(request):
     user = request.user
-    d_day = Profile.objects.get(user = request.user)
+    if user.is_authenticated:
+        d_day = Profile.objects.get(user = request.user)
+             
+    else:
+        d_day = 0       
     if request.method == 'POST':
         daily_form = DailyForm(request.POST)
         todothing_form = TodothingForm(request.POST)
@@ -28,8 +32,6 @@ def setDday(request):
             return redirect('diary:setDday')
     profile_form = ProfileForm(instance=request.user.profile)
     return render(request, "set_dday.html",{"profile_form":profile_form})
-
-
 
 
 def logout(request):
