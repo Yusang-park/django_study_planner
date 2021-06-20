@@ -1,13 +1,10 @@
 
-function initCalender(year, month) {
-    printYearMonth(year, month)
-    drawCalender(year, month)
-}
+
 
 function printYearMonth(year, month) {
     let month_toEnglish = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
-    document.write(`<h2> ${month_toEnglish[month-1]}, ${year} </h2>`);
+    document.write(`<h2> ${month_toEnglish[month - 1]}, ${year} </h2>`);
 }
 
 function getWeeknameIndex(year, month, dayIndex) {
@@ -28,39 +25,40 @@ function getMonthDayLength(monthIndex) {
     return dayLengthList[monthIndex];
 }
 
-function drawCalender(year, month){
+function drawCalender(year, month) {
     let weeknameOfFirstDay = getWeeknameIndex(year, month, 1);
     let dayIndex = '';
-    let monthDayLength = getMonthDayLength(month-1);
+    let monthDayLength = getMonthDayLength(month - 1);
     let loop = true;
     let columnIndex = 0;
-    
-    document.write(`<div class="calender">`)
-    while(loop){
+
+    document.write('<div class="calender">');
+    while (loop) {
         document.write('<div class="calender_row">');
-        for(let i =0; i<7; i++){
-            if(dayIndex =='' && i == weeknameOfFirstDay && loop){
-                 dayIndex = 1;           
+        for (let i = 0; i < 7; i++) {
+            if (dayIndex == '' && i == weeknameOfFirstDay && loop) {
+                dayIndex = 1;
             }
             document.write(
-            `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
+                `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
              <div class='weekname_container_${i}'>${getWeekname(i)}</div>
             ${dayIndex}
             </span>`
             );
 
-            if(dayIndex > 0 && dayIndex<monthDayLength){
-                 dayIndex++;
-            }else if (dayIndex == monthDayLength){
+            if (dayIndex > 0 && dayIndex < monthDayLength) {
+                dayIndex++;
+            } else if (dayIndex == monthDayLength) {
                 dayIndex = '';
                 loop = false;
             }
         }
         document.write('</div>');
-        
+
         columnIndex++;
     }
-    document.write(`</div>`)
+    document.write('</div>');
+
 }
 
 // 로드 후 발생 이벤트

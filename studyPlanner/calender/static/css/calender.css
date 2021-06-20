@@ -1,5 +1,7 @@
 *{
+    
     margin: 0px;
+
 }
 
 .weekname_container_0{
@@ -9,13 +11,52 @@
     background-color: blue;
 }
 
+.another_month_btn{
+  color: #AAAAAA;
+  left: 350px;
+  top: 90px;
+  word-spacing: 10px;
+}
+
 .calender_row{
+    width: 100%;
     margin:0px;
-    display: flex;
+    display: inline-flex;
 }
 
 .daily_container  {
-    width:10vw;
-    height:10vh;
-border-style: solid;
+    width: 15%;
+    height: 10vh;
+    border-style: solid;
+}
+
+html{
+    height:100%;
+    background-color: rgba(211, 211, 211, 1);
+}
+body{
+    height: 100%;
+    display:flex; 
+    justify-content:center;
+    align-items:center;
+}
+
+.calender_container{
+    width: 70%;
+    padding:10px
+}
+
+.container{
+    display: flex;
+    background-color:white;
+    border-radius: 20px;
+    width: 85%;
+}
+
+.info_container{
+    border-radius: 20px 0px 0px 20px;
+    display: flex;
+    align-items:center;
+    width:30%;
+    background-color:green;
 }

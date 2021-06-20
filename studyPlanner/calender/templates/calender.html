@@ -10,25 +10,41 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/calender.css' %}">
     <!-- js 연결 -->    
     <script src="{% static 'js/calender.js' %}"></script>
-    <title>Document</title>
+    {% comment %} <title>Document</title> {% endcomment %}
 
 </head>
 <body>
 
+<div class="container">
+    <div class="info_container">
+    <script>
+    printYearMonth({{year}}, {{month}})
+    </script>
+    </div>
+     <div class="calender_container">
+     <a href="{% url 'calender:change_calender' year=previous_year month=1 %}"><</a>
+{{year}}
+<a href="{% url 'calender:change_calender' year=next_year month=1 %}">></a>
+     <a href="{% url 'calender:calender' %}">현재로</a>
+     {% for value in 13|ranges %}
+     <span>asdfsdaf</span>
+        <a  href="{% url 'calender:change_calender' year=year month=value %}" class="another_month_btn" >{{value}}</a>
+     {% endfor %}
+     <script>
+        drawCalender({{year}}, {{month}})
+    </script>
+    </div>
+</div>
+{% comment %} 
 
-<a href="{% url 'calender:calender' %}">현재로</a>
 
-<a href="{% url 'calender:change_calender' year=previous_year month=1 %}">{{previous_year}}</a>
 
-{% for value in 13|ranges %}
-  <button type="button"><a href="{% url 'calender:change_calender' year=year month=value %}">{{value}}</a></button>
-{% endfor %}
-
-<a href="{% url 'calender:change_calender' year=next_year month=1 %}">{{next_year}}</a>
 
 
     <script>
+    
         initCalender({{year}}, {{month}})
     </script>
+    </div> {% endcomment %}
 </body>
 </html>
