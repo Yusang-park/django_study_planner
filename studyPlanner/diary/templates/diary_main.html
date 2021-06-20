@@ -19,6 +19,9 @@
     <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
     <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
     <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>
+    {% if user.is_authenticated %}
+    {{user.username}}님
+    {% endif %}
     </div>
     <h2>다이어리</h2>
 
@@ -26,9 +29,7 @@
 <a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
 <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
 
-{% if user.is_authenticated %}
-<br>유저 이름: {{user.username}}
-{% endif %}
+
 
 
 
