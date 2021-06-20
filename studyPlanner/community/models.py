@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class Write(models.Model):
     title= models.CharField(max_length=50)
     user= models.ForeignKey(User,related_name='write',on_delete=CASCADE,null=True)
+    mainphoto = models.ImageField(null=True,blank=True,upload_to="user_images")
     contents= models.TextField()
     updated_at= models.DateTimeField(auto_now=True)
     

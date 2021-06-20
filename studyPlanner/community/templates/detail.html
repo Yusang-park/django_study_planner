@@ -9,6 +9,9 @@
 <body>
     제목 : {{my_write.title}}
     <br><br>내용 : {{my_write.contents}}
+    {% if my_write.mainphoto %}
+    <img src="{{my_write.mainphoto.url}}">
+    {% endif %}
     <br><br>날짜 : {{my_write.updated_at|date:"Y.m.d"}}
     <h2>comment</h2><hr>
     {% if user.is_authenticated %}
