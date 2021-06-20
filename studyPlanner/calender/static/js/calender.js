@@ -1,10 +1,12 @@
 
 
 
-function printYearMonth(year, month) {
+function printYearMonth(year, month, today) {
     let month_toEnglish = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
-    document.write(`<h2> ${month_toEnglish[month - 1]}, ${year} </h2>`);
+    document.write(`<h1> ${today} <h1> <h2>${getWeekname(getWeeknameIndex(year, month, today))} </h2>`);
+    // document.write(`<h2> ${today} <br> ${month_toEnglish[month - 1]} </h2>`);
+    // , ${ year }
 }
 
 function getWeeknameIndex(year, month, dayIndex) {
@@ -33,15 +35,25 @@ function drawCalender(year, month) {
     let columnIndex = 0;
 
     document.write('<div class="calender">');
+    document.write('<div class="calender_row">');
+    for (let i = 0; i < 7; i++) {
+        // document.write('<span class="weekname_container_${ i }">' + getWeekname(i) + '</span>');
+        document.write('<span class="weekname_container">' + getWeekname(i) + '</span>');
+    }
+    document.write('</div>');
     while (loop) {
         document.write('<div class="calender_row">');
+
+
+
         for (let i = 0; i < 7; i++) {
             if (dayIndex == '' && i == weeknameOfFirstDay && loop) {
                 dayIndex = 1;
             }
+
             document.write(
                 `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
-             <div class='weekname_container_${i}'>${getWeekname(i)}</div>
+             
             ${dayIndex}
             </span>`
             );
