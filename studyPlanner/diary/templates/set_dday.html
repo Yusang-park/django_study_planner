@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/diary.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{% url 'diary:setDday' %}" method="POST">
+        {% csrf_token %}
+        {{profile_form.goal_day}}
+        <button type="submit">저장</button>
+    </form>
+</body>
+</html>
