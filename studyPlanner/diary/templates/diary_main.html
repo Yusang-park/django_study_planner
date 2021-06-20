@@ -47,7 +47,12 @@
                 var goalMilli = goalday.getTime();
                 var clacDay = 24*3600*1000;
                 var remainday = Math.round((goalMilli - todayMilli)/clacDay);
-                document.querySelector("#today").innerHTML = "D-"+remainday; 
+                if (remainday>0) {
+                    document.querySelector("#today").innerHTML = "D-"+remainday; 
+                } else{
+                    document.querySelector("#today").innerHTML = "D+"+(-remainday); 
+                }
+                
             </script>
           
         </div>
