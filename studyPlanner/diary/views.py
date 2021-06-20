@@ -1,8 +1,9 @@
 from .models import Profile
 from django.shortcuts import redirect, render
 from .forms import DailyForm, TodothingForm, ProfileForm
-from django.contrib import messages
 from django.contrib.auth.models import User
+from django.shortcuts import render,redirect
+from django.contrib import auth
 
 # Create your views here.
 def diary(request):
@@ -28,3 +29,9 @@ def setDday(request):
     profile_form = ProfileForm(instance=request.user.profile)
     return render(request, "set_dday.html",{"profile_form":profile_form})
 
+
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('diary:diary')
