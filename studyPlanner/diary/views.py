@@ -76,7 +76,7 @@ def setDday(request):
         profile_form = ProfileForm(request.POST, instance=request.user.profile)
         if profile_form.is_valid():
             profile_form.save()
-            return redirect('diary:setDday')
+            return redirect('diary:diary')
     profile_form = ProfileForm(instance=request.user.profile)
     return render(request, "set_dday.html",{"profile_form":profile_form})
 
