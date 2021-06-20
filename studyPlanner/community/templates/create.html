@@ -1,0 +1,5 @@
+<form method="POST", action=''>
+    {% csrf_token %}
+    {{create_form.as_p}}
+    <input type='submit' value='제출'>
+</form>

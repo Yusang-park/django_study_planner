@@ -3,6 +3,8 @@ from .models import *
 from .forms import *
 from django.shortcuts import get_object_or_404, render, redirect
 
+from django.shortcuts import render,redirect
+from django.contrib import auth
 
 # Create your views here.
 def diary(request):
@@ -47,3 +49,8 @@ def checkedTodo(request):
 
         
     
+    return render(request, 'diary_main.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect('diary:diary')
