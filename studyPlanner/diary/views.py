@@ -24,14 +24,11 @@ def diary(request):
         d_day = 0       
     if request.method == 'POST':
         daily_form = DailyForm(request.POST)
-        todothing_form = TodothingForm(request.POST)
         if daily_form.is_valid():
-            todothing_form.save()
             daily_form.save()
             return redirect('diary:diary')
     daily_form = DailyForm()
-    todothing_form = TodothingForm()
-    return render(request, 'diary_main.html',{"daily_form":daily_form,"todothing_form":todothing_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
         'todo_form' : todo_form,} )
 
 def addTodo(request):
