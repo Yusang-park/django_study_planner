@@ -17,7 +17,17 @@
 <div class="top_content">
 <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
 <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>
+<button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
+{% if user.is_authenticated %}
+{{user.username}}님
+{% endif %}
+<!-- qmffkqmffk -->
 </div>
+
+<!-- 로그인 로그아웃 -->
+<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
+<button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
+
 <h2>다이어리</h2>
     
     <!-- 공부 계획. -->
@@ -39,6 +49,7 @@
         </ol>   
         <input type="submit" value="수정">
     </form>
+
     <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
     <form action="{% url 'diary:addTodo' %}" method="POST">
         {% csrf_token %}
@@ -46,31 +57,9 @@
         {{ todo_form.todothing }} 
         <input type="submit" value="추가">
     </form>
-   
-    
 
+    <hr>
 
-    <div class="top_content">
-    <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
-    <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
-    <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>
-    {% if user.is_authenticated %}
-    {{user.username}}님
-    {% endif %}
-    </div>
-    <h2>다이어리</h2>
-
-<!-- 로그인 로그아웃 -->
-<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
-<button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
-
-
-
-
-
-
-
-    
 
     <form action="{% url 'diary:diary' %}" method="POST">
         {% csrf_token %}
