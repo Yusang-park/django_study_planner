@@ -11,6 +11,11 @@
     background-color: blue;
 }
 
+.weekname_container{
+    width: 15%;
+    text-align: center;
+}
+
 .another_month_btn{
   color: #AAAAAA;
   left: 350px;
@@ -21,12 +26,12 @@
 .calender_row{
     width: 100%;
     margin:0px;
-    display: inline-flex;
+    display: flex;
 }
 
 .daily_container  {
     width: 15%;
-    height: 10vh;
+    height: 13vh;
     border-style: solid;
 }
 
@@ -57,6 +62,8 @@ body{
     border-radius: 20px 0px 0px 20px;
     display: flex;
     align-items:center;
+ justify-content:center;
+ color:aliceblue;   
     width:30%;
-    background-color:green;
+    background-color:rgba(96, 190, 115, 1);
 }
