@@ -18,9 +18,9 @@
             {{write.id}}&nbsp
             {{write.title}}&nbsp
             {% if write.mainphoto %}
-            <img src ="{{ write.mainphoto.url }}">
-            <br>
+            <img src ="{{write.mainphoto.url}}" width=100 height=100>
             {% endif %}
+            <br>
             {{write.updated_at|date:"Y.m.d"}}
         </div>
     </a>
