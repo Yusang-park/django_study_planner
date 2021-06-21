@@ -9,35 +9,43 @@ from .forms import DailyForm, TodothingForm, ProfileForm
 from django.contrib.auth.models import User
 from django.shortcuts import render,redirect
 from django.contrib import auth
+import datetime
+from datetime import date
 
 # Create your views here.
 def diary(request):
+    today = date.today()
+    print('today',today)
     # todothing
-    todo_lists = Todothing.objects.all()
-    todo_form = TodothingForm()
+    # daily = Daily.objects.filter(user = request.user)
     #서버의 write 클래스 정보를 모두 가져온다.
     user = request.user
     if user.is_authenticated:
         d_day = Profile.objects.get(user = request.user)
-             
+        todo_lists = Todothing.objects.filter(user=request.user,date = today)
     else:
-        d_day = 0       
+        d_day = None
+        todo_lists = None
+    todo_form = TodothingForm()       
     if request.method == 'POST':
         daily_form = DailyForm(request.POST)
-        todothing_form = TodothingForm(request.POST)
         if daily_form.is_valid():
-            todothing_form.save()
+            daily_form = daily_form.save(commit=False)
+            daily_form.user = request.user
             daily_form.save()
             return redirect('diary:diary')
     daily_form = DailyForm()
-    todothing_form = TodothingForm()
-    return render(request, 'diary_main.html',{"daily_form":daily_form,"todothing_form":todothing_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
         'todo_form' : todo_form,} )
 
 def addTodo(request):
+    today = date.today()
+    print('today',today)
     if request.method == 'POST':
         todo_form = TodothingForm(request.POST)
         if todo_form.is_valid():
+            todo_form = todo_form.save(commit=False)
+            todo_form.user = request.user
             todo_form.save()
             return redirect('diary:diary')
     else:
