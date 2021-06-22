@@ -92,11 +92,8 @@ def checkedTodo(request):
         id = int(id) # 리스트 내의 요소를 문자열에서 정수로 바꾸기
         todo_list = get_object_or_404(Todothing, pk=id)
         # True인 것은 False로, False인 것은 True로 바꿔주기
-        if 'check' in request.POST: # check 버튼을 눌렀을 때
-            if todo_list.checkbox == False:
-                todo_list.checkbox = True
-            else:
-                todo_list.checkbox = False
+        if "check" in request.POST: # check 버튼을 눌렀을 때
+            todo_list.checkbox = not todo_list.checkbox
             todo_list.save()
         elif 'delete' in request.POST: # delete 버튼을 눌렀을 때 
             todo_list.delete()
