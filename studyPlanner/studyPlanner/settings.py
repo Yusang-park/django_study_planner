@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'calender',
     'accounts',
     'community',
-
     #소셜 로그인
     'django.contrib.sites',
     'allauth',
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.kakao',
 
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
