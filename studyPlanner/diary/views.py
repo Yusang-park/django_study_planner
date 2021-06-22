@@ -31,9 +31,7 @@ def diary(request):
         except Todothing.DoesNotExist :
             todo_lists = None
     else:
-        d_day = None
-        todo_lists = None
-        daily = None
+        return render(request,'no_login.html')
     todo_form = TodothingForm()       
     daily_form = DailyForm()
     # if request.method == 'POST':
@@ -46,7 +44,7 @@ def diary(request):
     # daily_form = DailyForm()
     return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
         'todo_form' : todo_form, 'daily' : daily } )
-
+    
 
 def setDiary(request):
     today = date.today()

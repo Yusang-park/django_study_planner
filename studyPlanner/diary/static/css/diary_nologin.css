@@ -13,16 +13,23 @@ html,body {
     height: 85%;
     width: 70%;
     background-color: rgb(247, 247, 247);
+    font-family: 'GmarketSansBold';
+    text-align: center;
+    align-items: center;
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
 }
+img{
+    width: 100%;
+    height: 100%;
+}
+
 .title{
     background-color: rgb(129, 171, 88);
     font-family: 'GmarketSansMedium';
     font-size: larger;
     height:max-content;
-}
-
-.text{
-    margin-top: 5px;
 }
 ol{
     margin: 5px;
@@ -65,10 +72,6 @@ a{
     width: 80%;
     height: 80%;
 }
-img{
-    width: 100%;
-    height: 100%;
-}
 .kindbutton{
     text-decoration: none;
     font-family: 'GmarketSansMedium';
@@ -85,6 +88,11 @@ img{
     justify-content: space-between;
     padding-top: 5px;
     align-items: center;
+}
+.my{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .bottom_content{

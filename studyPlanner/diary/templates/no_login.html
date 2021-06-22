@@ -1,0 +1,46 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css연결 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/diary_nologin.css' %}">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <div class="top_content">
+        <div class="nav">
+            <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+            <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>    
+            
+        </div>
+
+        <div class="my">
+            {% if user.is_authenticated %}
+            {{user.username}}님
+            <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
+            <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
+            {% endif %}
+    
+    
+            {% if not user.is_authenticated%}
+            <!-- 로그인 로그아웃 -->
+            <a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
+            {%endif%}
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="text">
+            로그인 해주세요!
+        </div>
+        
+    </div>
+</body>
