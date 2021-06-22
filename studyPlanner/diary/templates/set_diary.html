@@ -13,13 +13,15 @@
     <title>Document</title>
     
 </head>
-<body>    
-    <div class="container">
-
-        <div class="top_content">
+<body>
+    <div class="top_content">
+        <div class="nav">
             <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
-            <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>
+            <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>    
             
+        </div>
+
+        <div class="my">
             {% if user.is_authenticated %}
             {{user.username}}님
             <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
@@ -33,8 +35,36 @@
             {%endif%}
         </div>
 
-        <h2>다이어리</h2>
+    </div>    
+    <div class="container">
+        <div class="days">
+            <h2 id="today">{{daily_form.date}}</h2>
+            <script type = "text/javascript">
+                var today = new Date();
+                document.querySelector("#today").innerHTML = today.getFullYear()+'년 '+(today.getMonth()+1)+'월 '+today.getDate()+'일'; 
+            </script>
         
+            {% if d_day.goal_day %}
+            <h2 id = "dday"></h2>
+            <script type = "text/javascript">
+                var today = new Date();
+                var goalday = "{{d_day.goal_day}}";
+                var goalday = new Date(goalday);
+        
+                var todayMilli = today.getTime();
+                var goalMilli = goalday.getTime();
+                var clacDay = 24*3600*1000;
+                var remainday = Math.round((goalMilli - todayMilli)/clacDay);
+                if (remainday>0) {
+                    document.querySelector("#dday").innerHTML = "D-"+remainday; 
+                } else{
+                    document.querySelector("#dday").innerHTML = "D+"+(-remainday); 
+                }
+                
+            </script>
+            {%endif%}
+    
+        </div>
         <form action="{% url 'diary:setDiary' %}" method="POST">
             {% csrf_token %}
             <div>
@@ -49,35 +79,6 @@
             </div>
             <br>
             <br>
-            <div>
-                <div class="title">남은 날짜</div>
-                <div id = "today"></div>
-                <script type = "text/javascript">
-                    var today = new Date();
-                    var goalday = "{{d_day.goal_day}}";
-                    var goalday = new Date(goalday);
-    
-                    var todayMilli = today.getTime();
-                    var goalMilli = goalday.getTime();
-                    var clacDay = 24*3600*1000;
-                    var remainday = Math.round((goalMilli - todayMilli)/clacDay);
-                    if (remainday>0) {
-                        document.querySelector("#today").innerHTML = "D-"+remainday; 
-                    } else{
-                        document.querySelector("#today").innerHTML = "D+"+(-remainday); 
-                    }
-                    
-                </script>
-                
-            </div>
-            <br>
-            <br>
-    
-            
-    
-            <br>
-            <br>
-    
             <div>
                 <div class="title">오늘의 일기</div>
                 {{daily_form.feelings}}
