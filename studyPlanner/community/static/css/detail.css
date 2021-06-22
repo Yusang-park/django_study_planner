@@ -4,7 +4,7 @@ body{
 }
 *{
     text-decoration: none;
-    font-family: G마켓 산스 TTF Medium;
+    font-family: G마켓 산스 TTF;
 }
 
 header {
@@ -26,6 +26,8 @@ header {
     width: 400px;
     height: 100px;
     border-radius: 30px;
+    box-shadow: 10px 10px lightgrey;
+
 }
 
 header:after, header:before {
@@ -140,11 +142,11 @@ header:after {
     margin-bottom: 100px;
 }
 
-.commentform{s
+.commentform{
     display: flex;
     flex-direction: column;
     padding-top: 360px;
-    padding-right: 750px;
+    padding-right: 780px;
 }
 
 #demotext {

@@ -3,10 +3,11 @@ body{
     margin-left: 10px;
     padding-left: 50px;   
     background-color: rgb(247,247,247);
-    font-family: G마켓 산스 TTF Medium;
+    
 }
 *{
     text-decoration: none;
+    font-family: G마켓 산스 TTF Medium;
 }
 
 .title{
@@ -27,6 +28,7 @@ header {
     width: 400px;
     height: 100px;
     border-radius: 30px;
+    box-shadow: 10px 10px lightgrey;
 }
 header:after, header:before {
 	border: solid transparent;
@@ -37,6 +39,7 @@ header:after, header:before {
 	width: 100;
 	position: absolute;
 	pointer-events: none;
+
 }
 
 header:after {
@@ -44,6 +47,7 @@ header:after {
 	border-top-color: rgb(129, 171, 88);
 	border-width: 20px;
 	margin-left: -20px;
+
 }
 
 .create-btn1{ 

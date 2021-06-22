@@ -7,10 +7,10 @@
 }
 
 .container2{
-    width: 900px;
+    width: 1150px;
     height: 800px;
     margin-top: 70px;
-    margin-left: 320px;
+    margin-left: 190px;
     padding-top: 50px;
     display: flex;
     flex-direction: column;
@@ -34,6 +34,7 @@ header {
     width: 400px;
     height: 100px;
     border-radius: 30px;
+    box-shadow: 10px 10px lightgrey;
 }
 
 header:after, header:before {
