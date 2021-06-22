@@ -23,9 +23,13 @@ def diary(request):
     user = request.user
     if user.is_authenticated:
         d_day = Profile.objects.get(user = request.user)
-        todo_lists = Todothing.objects.filter(user=request.user,date = today)
-        # daily = Daily.objects.get(user = request.user)
-        daily = get_object_or_404(Daily, user = request.user)
+        try:
+            todo_lists = Todothing.objects.filter(user=request.user,date = today)
+            daily = Daily.objects.get(user = request.user)
+        except Daily.DoesNotExist :
+            daily = None
+        except Todothing.DoesNotExist :
+            todo_lists = None
     else:
         d_day = None
         todo_lists = None
