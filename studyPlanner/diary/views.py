@@ -1,56 +1,59 @@
-from .models import Profile, Todothing
-from django.shortcuts import redirect, render, get_object_or_404
+from tabnanny import check
+from .models import *
+from .forms import *
+from django.shortcuts import get_object_or_404, render, redirect
+
+from .models import Profile
+from django.shortcuts import redirect, render
 from .forms import DailyForm, TodothingForm, ProfileForm
-from django.contrib import messages
 from django.contrib.auth.models import User
+from django.shortcuts import render,redirect
+from django.contrib import auth
+import datetime
+from datetime import date
 
 
 # Create your views here.
 def diary(request):
+    today = date.today()
+    print('today',today)
+    # todothing
+    # daily = Daily.objects.filter(user = request.user)
+    #서버의 write 클래스 정보를 모두 가져온다.
     user = request.user
-    d_day = Profile.objects.get(user = request.user)
+    if user.is_authenticated:
+        d_day = Profile.objects.get(user = request.user)
+        todo_lists = Todothing.objects.filter(user=request.user,date = today)
+    else:
+        d_day = None
+        todo_lists = None
+    todo_form = TodothingForm()       
     if request.method == 'POST':
         daily_form = DailyForm(request.POST)
-        # todothing_form = TodothingForm(request.POST)
         if daily_form.is_valid():
-            # todothing_form.save()
+            daily_form = daily_form.save(commit=False)
+            daily_form.user = request.user
             daily_form.save()
             return redirect('diary:diary')
     daily_form = DailyForm()
-    # todothing
-    todo_lists = Todothing.objects.all()
-    todo_form = TodothingForm()
-    return render(request, 'diary_main.html',{
-        "daily_form":daily_form,
-        "todothing_form":todothing_form,
-        "user":user,
-        "d_day":d_day,
-        "todo_lists":todo_lists,
-        "todo_form":todo_form,
-        } )
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
+        'todo_form' : todo_form,} )
 
-def setDday(request):
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect('diary:setDday')
-    profile_form = ProfileForm(instance=request.user.profile)
-    return render(request, "set_dday.html",{"profile_form":profile_form})
-
-
-# todolist 추가하기
 def addTodo(request):
+    today = date.today()
+    print('today',today)
     if request.method == 'POST':
         todo_form = TodothingForm(request.POST)
         if todo_form.is_valid():
+            todo_form = todo_form.save(commit=False)
+            todo_form.user = request.user
             todo_form.save()
             return redirect('diary:diary')
     else:
         todo_form = TodothingForm()
-    return render(request, 'diary:diary_main', {'todo_form':todo_form})
+    return render(request, "diary:diary_main", {'todo_form' : todo_form})
 
-# todolist 항목 체크하기 
+
 def checkedTodo(request):
     checked = request.POST.getlist('checked') # html에서 체크한 목록의 id값 리스트로 받아오기
     # 체크한 id값에 해당하는 checkbox = True로 수정하기
@@ -59,5 +62,30 @@ def checkedTodo(request):
         todo_list = get_object_or_404(Todothing, pk=id)
         # 체크된 것을 True로 바꿔주기
         todo_list.checkbox = True
-    todo_list.save() # 모델의 필드 저장
+        todo_list.save() # 모델의 필드 저장
+    return redirect('diary:diary')
+
+
+        
+
+
+
+    
+
+        
+    
+    
+
+def setDday(request):
+    if request.method == 'POST':
+        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('diary:diary')
+    profile_form = ProfileForm(instance=request.user.profile)
+    return render(request, "set_dday.html",{"profile_form":profile_form})
+
+
+def logout(request):
+    auth.logout(request)
     return redirect('diary:diary')

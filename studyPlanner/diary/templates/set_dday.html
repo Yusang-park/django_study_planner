@@ -11,7 +11,7 @@
 <body>
     <form action="{% url 'diary:setDday' %}" method="POST">
         {% csrf_token %}
-        {{profile_form}}
+        {{profile_form.goal_day}}
         <button type="submit">저장</button>
     </form>
 </body>

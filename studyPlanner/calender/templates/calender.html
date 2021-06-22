@@ -1,0 +1,50 @@
+{% load filters %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css연결 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/calender.css' %}">
+    <!-- js 연결 -->    
+    <script src="{% static 'js/calender.js' %}"></script>
+    {% comment %} <title>Document</title> {% endcomment %}
+
+</head>
+<body>
+
+<div class="container">
+    <div class="info_container">
+    <script>
+    printYearMonth({{year}}, {{month}}, {{today}})
+    </script>
+    </div>
+     <div class="calender_container">
+     <a href="{% url 'calender:change_calender' year=previous_year month=1 %}"><</a>
+{{year}}
+<a href="{% url 'calender:change_calender' year=next_year month=1 %}">></a>
+     <a href="{% url 'calender:calender' %}">현재로</a>
+     {% for value in 13|ranges %}
+     <span>asdfsdaf</span>
+        <a  href="{% url 'calender:change_calender' year=year month=value %}" class="another_month_btn" >{{value}}</a>
+     {% endfor %}
+     <script>
+        drawCalender({{year}}, {{month}})
+    </script>
+    </div>
+</div>
+{% comment %} 
+
+
+
+
+
+    <script>
+    
+        initCalender({{year}}, {{month}})
+    </script>
+    </div> {% endcomment %}
+</body>
+</html>

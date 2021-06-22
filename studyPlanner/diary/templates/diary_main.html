@@ -1,6 +1,6 @@
-<!-- 추가 -->
-{% load static %}
 
+{% load static %}
+{% load socialaccount %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,11 +14,50 @@
     <title>Document</title>
 </head>
 <body>    
-    <div class="top_content">
-    <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
-    <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
-    </div>
-    <h2>다이어리</h2>
+<div class="top_content">
+<button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+<button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>
+<button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
+{% if user.is_authenticated %}
+{{user.username}}님
+{% endif %}
+</div>
+
+<!-- 로그인 로그아웃 -->
+<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
+<button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
+
+<h2>다이어리</h2>
+    
+    <!-- 공부 계획. -->
+    <form action="{% url 'diary:checkedTodo' %}" method="POST">
+        {% csrf_token %}
+        <ol>
+            {% for todo_list in todo_lists %}
+            <li>
+                <!-- 할 일 이름 -->
+                {{ todo_list.todothing }} 
+                <!-- 체크 박스. True면 체크박스가 체크된 상태로 표시, False면 체크 안된 상태로 표시 -->
+                {% if todo_list.checkbox %}
+                <input type="checkbox" id ="checked" name="checked" checked value="{{ todo_list.id }}">
+                {% else %}
+                <input type="checkbox" id ="checked" name="checked" value="{{ todo_list.id }}">
+                {% endif %}
+            </li> 
+            {% endfor %}
+        </ol>   
+        <input type="submit" value="수정">
+    </form>
+
+    <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
+    <form action="{% url 'diary:addTodo' %}" method="POST">
+        {% csrf_token %}
+        <!-- 공부 계획 입력하기 -->
+        {{ todo_form.todothing }} 
+        <input type="submit" value="추가">
+    </form>
+
+    <hr>
 
 
     <form action="{% url 'diary:diary' %}" method="POST">
@@ -47,43 +86,18 @@
                 var goalMilli = goalday.getTime();
                 var clacDay = 24*3600*1000;
                 var remainday = Math.round((goalMilli - todayMilli)/clacDay);
-                document.querySelector("#today").innerHTML = "D-"+remainday; 
+                if (remainday>0) {
+                    document.querySelector("#today").innerHTML = "D-"+remainday; 
+                } else{
+                    document.querySelector("#today").innerHTML = "D+"+(-remainday); 
+                }
+                
             </script>
           
         </div>
         <br>
         <br>
         <!-- 할 일 목록 / 공부 계획 -->
-        <div>
-            <div>할 일</div>
-            <form action="{% url 'diary:checkedTodo' %}" method='POST'>
-                {% csrf_token %}
-                <ol>
-                    {% for todo_list in todo_lists %}
-                    <li>
-                        <!-- 할 일 이름 -->
-                        {{ todo_list.todothing }}
-                        <!-- 체크 박스. True면 체크박스가 체크된 상태로 표시, False면 체크 안된 상태로 표시 -->
-                        {% if todo_list.checkbox %}
-                        <input type="checkbox" id="checked" name="checked" checked value="{{ todo_list.id }}">
-                        {% else %}
-                        <input type="checkbox" id="checked" name="checked" value="{{ todo_list.id }}">
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ol>
-                <input type="submit" value="수정">
-            </form>
-            <!-- 위에는 입력한 값이 나열되고 아래에는 입력창  -->
-            <form action="{% url 'diary:addTodo' %}" method="POST">
-                {% csrf_token %}
-                <!-- 공부 계획 입력하기 -->
-                {{ todo_form.todothing }}
-                <input type="submit" value="추가">
-            </form>
-        </div>
-        <br>
-        <br>
         <div>
             <div>오늘의 일기</div>
             {{daily_form.feelings}}
