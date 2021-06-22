@@ -146,7 +146,8 @@ header:after {
     display: flex;
     flex-direction: column;
     padding-top: 360px;
-    padding-right: 780px;
+    padding-right: 50px;
+    padding-left: 50px;
 }
 
 #demotext {
