@@ -14,7 +14,6 @@ from datetime import date
 
 # Create your views here.
 def diary(request):
-    my_diary = get_object_or_404(Daily,)
     today = date.today()
     print('today',today)
     # todothing
