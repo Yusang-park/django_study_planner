@@ -1,34 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/community.css' %}">
+
     <title>Document</title>
 </head>
 <body>
-    <h1>Community !</h1>
-    <button type="button" class="create-btn"><a href="{% url 'community:create' %}">글 작성</a></button>
-    <hr>
+    <header>
+        <div class='title'>
+        <h1>Community !</h1>
+        </div>
+    </header>
+    <div class='nav'>
+    <button type="button" class="create-btn1"><a href="{% url 'calender:calender' %}">Calender</a></button>&nbsp
+    <button type="button" class="create-btn2"><a href="{% url 'diary:diary' %}">Diary</a></button>&nbsp
+    <button type="button" class="create-btn3"><a href="{% url 'community:create' %}">Write</a></button>
+    </div>
     
-
+    <div class='content'>
     {% for write in all_write %}
     <a href="{% url 'community:detail' write.id %}">
         <div class='all_write'>
-            {{write.id}}&nbsp
-            {{write.title}}&nbsp
+            <br>
             {% if write.mainphoto %}
-            <img src ="{{write.mainphoto.url}}" width=100 height=100>
+            <img src ="{{write.mainphoto.url}}" width=230 height=230>
             {% endif %}
             <br>
-            {{write.updated_at|date:"Y.m.d"}}
+
         </div>
     </a>
-    <div class='update-delete'>
-        <a href="{% url 'community:update' write.id %}">수정하기</a>
-        <a href="{% url 'community:delete' write.id %}">삭제하기</a>
-    </div>
+
     {% endfor %}
+    </div>
 </body>
 </html>
 

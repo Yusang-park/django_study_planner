@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'calender',
     'accounts',
     'community',
+    'bootstrap4',
 
     #소셜 로그인
     'django.contrib.sites',
