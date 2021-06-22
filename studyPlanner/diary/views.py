@@ -12,6 +12,7 @@ from django.contrib import auth
 import datetime
 from datetime import date
 
+
 # Create your views here.
 def diary(request):
     today = date.today()
@@ -63,6 +64,7 @@ def checkedTodo(request):
         todo_list.checkbox = True
         todo_list.save() # 모델의 필드 저장
     return redirect('diary:diary')
+
 
 
         
