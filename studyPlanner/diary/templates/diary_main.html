@@ -29,81 +29,85 @@
 <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
 
 <h2>다이어리</h2>
-
+    
     <hr>
 
+    <div>
+        <div>오늘의 목표</div>
+        {{ daily.goal }}
+    </div>
+    <br>
+    <br>
+    <div>
+        <div>공부시간</div>
+        {{ daily.studytime_h }}시간 {{ daily.studytime_m }}분
+    </div>
+    <br>
+    <br>
+    <div>
+        <div>남은 날짜</div>
+        <div id = "today"></div>
+        <script type = "text/javascript">
+            var today = new Date();
+            var goalday = "{{d_day.goal_day}}";
+            var goalday = new Date(goalday);
 
-    <form action="{% url 'diary:diary' %}" method="POST">
-        {% csrf_token %}
-        <div>
-            <div>오늘의 목표</div>
-            {{daily_form.goal}}
-        </div>
-        <br>
-        <br>
-        <div>
-            <div>공부시간</div>
-            {{daily_form.studytime_h}}시간 {{daily_form.studytime_m}}분
-        </div>
-        <br>
-        <br>
-        <div>
-            <div>남은 날짜</div>
-            <div id = "today"></div>
-            <script type = "text/javascript">
-                var today = new Date();
-                var goalday = "{{d_day.goal_day}}";
-                var goalday = new Date(goalday);
-
-                var todayMilli = today.getTime();
-                var goalMilli = goalday.getTime();
-                var clacDay = 24*3600*1000;
-                var remainday = Math.round((goalMilli - todayMilli)/clacDay);
-                if (remainday>0) {
-                    document.querySelector("#today").innerHTML = "D-"+remainday; 
-                } else{
-                    document.querySelector("#today").innerHTML = "D+"+(-remainday); 
-                }
-                
-            </script>
-          
-        </div>
-        <br>
-        <br>
-        <div>
-            <div>오늘의 일기</div>
-            {{daily_form.feelings}}
-        </div>
+            var todayMilli = today.getTime();
+            var goalMilli = goalday.getTime();
+            var clacDay = 24*3600*1000;
+            var remainday = Math.round((goalMilli - todayMilli)/clacDay);
+            if (remainday>0) {
+                document.querySelector("#today").innerHTML = "D-"+remainday; 
+            } else{
+                document.querySelector("#today").innerHTML = "D+"+(-remainday); 
+            }
+            
+        </script>
         
-        <button type="submit">저장</button>
-    </form>
-
-
-    <!-- 공부 계획  -->
-    <form action="{% url 'diary:checkedTodo' %}" method="POST">
-        {% csrf_token %}
-        <ol class="todolist">
-            {% for todo_list in todo_lists %}
-            <li> 
-                <!-- 할 일 이름 / checkbox가 True일 때 취소선 -->
-                {% if todo_list.checkbox == True %}
-                    <strike>{{ todo_list.todothing }}</strike>
-                {% else %}
-                    <span>{{ todo_list.todothing }}</span>
-                {% endif %}
-            </li> 
-            {% endfor %}
-        </ol>   
-        <input type="submit" value="수정">
-    </form>  
+    </div>
+    <br>
+    <br>
+    <div>
+        <div>오늘의 일기</div>
+        {{ daily.feelings }}
+    </div>
+    <br>
+    <br>
+    <a href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
+    <br>
+    <br>
+    <div>
+        <div>오늘 할일</div>
+        <!-- 공부 계획  -->
+        <form action="{% url 'diary:checkedTodo' %}" method="POST">
+            {% csrf_token %}
+            <ol>
+                {% for todo_list in todo_lists %}
+                <li> 
+                    <div class="todo_list">
+                    <!-- 할 일 이름 / checkbox가 True일 때 취소선 -->
+                    {% if todo_list.checkbox == True %}
+                        <strike>{{ todo_list.todothing }}</strike>
+                    {% else %}
+                        <span>{{ todo_list.todothing }}</span>
+                    {% endif %}
+                    </div>
+                    <input type="checkbox" id="checked" name="checked" value="{{ todo_list.id }}">
+                </li> 
+                {% endfor %}
+            </ol>   
+            <input type="submit" name="check" value="check">
+            <input type="submit" name="delete" value="delete">
+        </form>  
     
    
-    <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
-    <form action="{% url 'diary:addTodo' %}" method="POST">
-        {% csrf_token %}
-        <!-- 공부 계획 입력하기 -->
-        {{ todo_form.todothing }} 
-        <input type="submit" value="추가">
-    </form>
+        <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
+        <form action="{% url 'diary:addTodo' %}" method="POST">
+            {% csrf_token %}
+            <!-- 공부 계획 입력하기 -->
+            {{ todo_form.todothing }} 
+            <input type="submit" value="추가">
+        </form>
+    </div>
 </body>
 </html>

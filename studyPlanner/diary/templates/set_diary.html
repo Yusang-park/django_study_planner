@@ -1,0 +1,84 @@
+
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css연결 -->
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/diary.css' %}">
+    <title>Document</title>
+    
+</head>
+<body>    
+<div class="top_content">
+<button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+<button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>
+<button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
+{% if user.is_authenticated %}
+{{ user.username }}님
+{% endif %}
+</div>
+
+<!-- 로그인 로그아웃 -->
+<a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
+<button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
+
+<h2>다이어리</h2>
+
+    <hr>
+
+
+    <form action="{% url 'diary:setDiary' %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <div>오늘의 목표</div>
+            {{daily_form.goal}}
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>공부시간</div>
+            {{daily_form.studytime_h}}시간 {{daily_form.studytime_m}}분
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>남은 날짜</div>
+            <div id = "today"></div>
+            <script type = "text/javascript">
+                var today = new Date();
+                var goalday = "{{d_day.goal_day}}";
+                var goalday = new Date(goalday);
+
+                var todayMilli = today.getTime();
+                var goalMilli = goalday.getTime();
+                var clacDay = 24*3600*1000;
+                var remainday = Math.round((goalMilli - todayMilli)/clacDay);
+                if (remainday>0) {
+                    document.querySelector("#today").innerHTML = "D-"+remainday; 
+                } else{
+                    document.querySelector("#today").innerHTML = "D+"+(-remainday); 
+                }
+                
+            </script>
+          
+        </div>
+        <br>
+        <br>
+        <div>
+            <div>오늘의 일기</div>
+            {{daily_form.feelings}}
+        </div>
+        
+        <button type="submit">저장</button>
+    </form>
+    <br>
+    <br>
+    
+</body>
+</html>

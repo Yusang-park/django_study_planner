@@ -24,20 +24,46 @@ def diary(request):
     if user.is_authenticated:
         d_day = Profile.objects.get(user = request.user)
         todo_lists = Todothing.objects.filter(user=request.user,date = today)
+        daily = Daily.objects.get(user = request.user)
     else:
         d_day = None
         todo_lists = None
+        daily = None
     todo_form = TodothingForm()       
+    daily_form = DailyForm()
+    # if request.method == 'POST':
+    #     daily_form = DailyForm(request.POST)
+    #     if daily_form.is_valid():
+    #         daily_form = daily_form.save(commit=False)
+    #         daily_form.user = request.user
+    #         daily_form.save()
+    #         return redirect('diary:diary')
+    # daily_form = DailyForm()
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
+        'todo_form' : todo_form, 'daily' : daily } )
+
+
+def setDiary(request):
+    today = date.today()
+    print('today',today)
+    user = request.user
+    if user.is_authenticated:
+        d_day = Profile.objects.get(user = request.user)
+        daily = Daily.objects.filter(user=request.user, date = today).first()
+    else:
+        d_day = None
+        daily = None
     if request.method == 'POST':
-        daily_form = DailyForm(request.POST)
+        daily_form = DailyForm(request.POST, instance=daily)
         if daily_form.is_valid():
             daily_form = daily_form.save(commit=False)
             daily_form.user = request.user
             daily_form.save()
             return redirect('diary:diary')
-    daily_form = DailyForm()
-    return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
-        'todo_form' : todo_form,} )
+    else:
+        daily_form = DailyForm(instance=daily)
+    return render(request, 'set_diary.html', {'daily_form': daily_form, 'daily':daily, "d_day":d_day })
+
 
 def addTodo(request):
     today = date.today()
@@ -60,10 +86,20 @@ def checkedTodo(request):
     for id in checked:
         id = int(id) # 리스트 내의 요소를 문자열에서 정수로 바꾸기
         todo_list = get_object_or_404(Todothing, pk=id)
-        # 체크된 것을 True로 바꿔주기
-        todo_list.checkbox = True
-        todo_list.save() # 모델의 필드 저장
+        # True인 것은 False로, False인 것은 True로 바꿔주기
+        if 'check' in request.POST: # update 버튼을 눌렀을 때
+            if todo_list.checkbox == False:
+                todo_list.checkbox = True
+            else:
+                todo_list.checkbox = False
+            todo_list.save()
+        elif 'delete' in request.POST: # delete 버튼을 눌렀을 때 
+            todo_list.delete()
     return redirect('diary:diary')
+
+
+
+
 
 
 
