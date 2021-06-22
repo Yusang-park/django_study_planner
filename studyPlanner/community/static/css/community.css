@@ -3,6 +3,7 @@ body{
     margin-left: 10px;
     padding-left: 50px;   
     background-color: rgb(247,247,247);
+    background-image: url('background.jpg');
     
 }
 *{
@@ -108,7 +109,11 @@ header:after {
 }
 
 .content{
+    margin-top: 40px;
     padding-top: 30px;
+    padding-bottom: 30px;
     padding-left: 50px;
-
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: rgb(247,247,247);
 }

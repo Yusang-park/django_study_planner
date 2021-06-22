@@ -31,12 +31,16 @@
 
 
     <div class='container'>
+    {% if user.is_authenticated %}
     <form method="POST" enctype="multipart/form-data" style='width:600px;height:10px;'>
         {% csrf_token %}
         {% bootstrap_form create_form %}
         <div class='submit'>
         <button type='submit' class='submit_button'>제출</button>
         </div>
+    {% else %}
+    <br><br><h3>📢 로그인한 유저만 사용 가능한 페이지입니다!</h3>
+    {% endif %}
         
     </form>
     </div>

@@ -1,6 +1,6 @@
 body{
     padding:50px;
-    
+    background-image: url('background.jpg');
 }
 *{
     text-decoration: none;
@@ -11,8 +11,8 @@ header {
     text-align: center;
     color: white;
     margin-left: 500px;
-    margin-top: 50px;
-    margin-bottom: 70px;
+    margin-top: 40px;
+    margin-bottom: 60px;
 }
 
 .title{
@@ -90,14 +90,14 @@ header:after {
 }
 
 .buttons{
-    padding-top: 10px;
+    padding-top: 5spx;
 }
 
 
 
 .create-btn1{ 
     background-color: rgb(129, 171, 88);
-    width: 100px;
+    width: 150px;
     height: 40px;
     text-align: center;
     border-radius: 10px;
