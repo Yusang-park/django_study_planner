@@ -36,7 +36,7 @@
 
         <h2>다이어리</h2>
         
-        <form action="{% url 'diary:diary' %}" method="POST">
+        <form action="{% url 'diary:setDiary' %}" method="POST">
             {% csrf_token %}
             <div>
                 <div class="title">오늘의 목표</div>
