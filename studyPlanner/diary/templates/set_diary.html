@@ -65,17 +65,18 @@
             {%endif%}
     
         </div>
+
         <form action="{% url 'diary:setDiary' %}" method="POST">
             {% csrf_token %}
-            <div>
-                <div class="title">오늘의 목표</div>
-                {{daily_form.goal}}
-            </div>
-            <br>
-            <br>
-            <div>
-                <div class="title">공부시간</div>
-                {{daily_form.studytime_h}}시간 {{daily_form.studytime_m}}분
+            <div class="content-top">
+                <div class="content">
+                    <div class="title">오늘의 목표</div>
+                    {{daily_form.goal}}
+                </div>
+                <div class="content">
+                    <div class="title">공부 시간</div>
+                    {{daily_form.studytime_h}}시간 {{daily_form.studytime_m}}분
+                </div>
             </div>
             <br>
             <br>

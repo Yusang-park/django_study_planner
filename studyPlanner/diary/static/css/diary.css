@@ -1,21 +1,31 @@
-body {
+html,body {
     margin: 0 auto;
     justify-content: center;
     align-items: center;
     font-family: 'GmarketSansLight';
     background-image: url("../backimage.jpg");
+    width: 100%;
+    height: 100%;
 }
 .container{
     border-radius: 30px;
     margin: 10px auto;
-    height: 100%;
+    height: 85%;
     width: 70%;
     background-color: rgb(247, 247, 247);
 }
 .title{
     background-color: rgb(129, 171, 88);
     font-family: 'GmarketSansMedium';
+    font-size: larger;
     height:max-content;
+}
+.text{
+    margin-top: 5px;
+}
+ol{
+    margin: 5px;
+    padding-inline-start: 30px;
 }
 
 @font-face {
@@ -69,6 +79,13 @@ a{
     padding-top: 5px;
 }
 
+.bottom_content{
+    display: flex;
+    margin: 0 auto;
+    width: 70%;
+    justify-content: flex-end;
+}
+
 h2{
     font-family: 'GmarketSansBold';
 }
@@ -80,24 +97,56 @@ h2{
     margin-inline: 30px;
 }
 
-#id_goal{
+#id_goal,#id_feelings{
     border-style: none;
     font-family: 'GmarketSansLight';
+    width: 99.3%;
+    padding: none;
+    margin-top: 5px;
+    font-size: large;
 }
 
 .content-top{
     display: flex;
-    justify-content: space-between;
-    width: -webkit-fill-available;
+    justify-content:space-around;
+    width: 100%;
+    gap: 10px;
 }
 .todaygoal{
     width: inherit;
 }
 
 #id_studytime_h, #id_studytime_m{
-    width: 50px;
+    border-style: none;
+    font-family: 'GmarketSansLight';
+    width: 50px
 }
 
-.content{
+.content,.box{
     flex-grow: 1;
+}
+
+.box1{
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 45%;
+}
+
+.whole{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}   
+
+.todo_list{
+    display: flex;
+    border-bottom: 0.3px solid darkgray;
+}
+.todo{
+    width: 90%;
+}
+
+#checked{
+    margin: 0px;
 }
