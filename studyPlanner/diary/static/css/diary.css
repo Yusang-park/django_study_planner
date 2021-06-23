@@ -105,11 +105,10 @@ img{
 }
 
 .bottom_content{
-    display: flex;
     margin: 0 auto;
     width: 70%;
     height: fit-content;
-    justify-content: flex-end;
+    text-align: right;
 }
 
 h2{
