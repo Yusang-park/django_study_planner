@@ -8,12 +8,10 @@ body{
 }
 *{
     text-decoration: none;
-    font-family: G마켓 산스 TTF Medium;
+    font-family:'GmarketSansMedium'
 }
 
-.title{
-    padding-top: 10px;
-}
+
 
 header {
     text-align: center;
@@ -95,4 +93,25 @@ a{
     border: 4px solid rgba(129, 171, 88, 0.3);
     border-radius: 50px;
     background-color: rgb(247,247,247);
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
