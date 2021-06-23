@@ -89,7 +89,6 @@ header:after {
 .create-btn{ 
     background-color: rgb(129, 171, 88);
     height: 100%;
-    color: white;
     text-align: center;
     border-radius: 10px;
     border-style: none;
@@ -97,7 +96,7 @@ header:after {
     padding: 6px 14px;
 }
 
-a{
+.create-btn a{
     text-decoration: none;
     width: 100%;
     color:white;
