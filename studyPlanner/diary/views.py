@@ -137,3 +137,38 @@ def setDday(request):
 def logout(request):
     auth.logout(request)
     return redirect('diary:diary')
+
+
+
+def changed_diary(request, year, month, day):
+    today = datetime.date(year, month, day)
+    print('date',today)
+    # todothing
+    # daily = Daily.objects.filter(user = request.user)
+    #서버의 write 클래스 정보를 모두 가져온다.
+    user = request.user
+    if user.is_authenticated:
+        d_day = Profile.objects.get(user = request.user)
+        try:
+            todo_lists = Todothing.objects.filter(user=request.user,date = today)
+            daily = Daily.objects.get(user = request.user)
+        except Daily.DoesNotExist :
+            daily = None
+        except Todothing.DoesNotExist :
+            todo_lists = None
+    else:
+        return render(request,'no_login.html')
+    todo_form = TodothingForm()       
+    daily_form = DailyForm()
+    # if request.method == 'POST':
+    #     daily_form = DailyForm(request.POST)
+    #     if daily_form.is_valid():
+    #         daily_form = daily_form.save(commit=False)
+    #         daily_form.user = request.user
+    #         daily_form.save()
+    #         return redirect('diary:diary')
+    # daily_form = DailyForm()
+
+
+    return render(request, 'diary_main.html',{"daily_form":daily_form,"user":user,"d_day":d_day, 'todo_lists' : todo_lists,
+        'todo_form' : todo_form, 'daily' : daily } )
