@@ -11,6 +11,10 @@ from django.shortcuts import render,redirect
 from django.contrib import auth
 import datetime
 from datetime import date
+from django.views.decorators.csrf import csrf_exempt
+
+
+
 
 
 # Create your views here.
@@ -83,19 +87,26 @@ def addTodo(request):
     return render(request, "diary:diary_main", {'todo_form' : todo_form})
 
 
-def checkedTodo(request):
-    checked = request.POST.getlist('checked') # html에서 체크한 목록의 id값 리스트로 받아오기
-    # 체크한 id값에 해당하는 checkbox = True로 수정하기
-    for id in checked:
-        id = int(id) # 리스트 내의 요소를 문자열에서 정수로 바꾸기
-        todo_list = get_object_or_404(Todothing, pk=id)
-        # True인 것은 False로, False인 것은 True로 바꿔주기
-        if "check" in request.POST: # check 버튼을 눌렀을 때
-            todo_list.checkbox = not todo_list.checkbox
-            todo_list.save()
-        elif 'delete' in request.POST: # delete 버튼을 눌렀을 때 
-            todo_list.delete()
+# 체크 박스를 사용하는 것이 아니라 링크를 사용해서.
+@csrf_exempt
+def changeTodo(request, id):
+    id = int(id)
+    todo_list = get_object_or_404(Todothing, pk=id)
+    if todo_list.checkbox == True:
+        todo_list.checkbox = False
+    else:
+        todo_list.checkbox = True
+    todo_list.save()
     return redirect('diary:diary')
+
+
+@csrf_exempt
+def deleteTodo(request, id):
+    id = int(id)
+    todo_list = get_object_or_404(Todothing, pk=id)
+    todo_list.delete()
+    return redirect('diary:diary')
+    
 
 
 
