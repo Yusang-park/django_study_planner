@@ -70,10 +70,10 @@ function drawCalender(year, month, today, todo_lists_js) {
              ${dayIndex}
             <div>`);
 
-
+                let count = 0;
                 for (let i = 0; i < todo_lists_js.length; i++) {
-                    if (todo_lists_js[i].date == year + '/' + month + '/' + today) {
-
+                    if (todo_lists_js[i].date == year + '/' + month + '/' + today && count < 4) {
+                        count++;
                         if (todo_lists_js[i].checkBox == 1) {
                             document.write(
                                 `<div id="todo_text"  style="text-decoration:line-through">${todo_lists_js[i].todo}</div>`
@@ -96,10 +96,10 @@ function drawCalender(year, month, today, todo_lists_js) {
                     `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
              ${dayIndex}
             <div>`);
-
+                let count = 0;
                 for (let i = 0; i < todo_lists_js.length; i++) {
-                    if (todo_lists_js[i].date == year + '/' + month + '/' + dayIndex) {
-
+                    if (todo_lists_js[i].date == year + '/' + month + '/' + dayIndex && count < 4) {
+                        count++;
                         if (todo_lists_js[i].checkBox == 1) {
                             document.write(
                                 `<div id="todo_text"  style="text-decoration:line-through">${todo_lists_js[i].todo}</div>`
