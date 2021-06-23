@@ -51,7 +51,7 @@
 
     <div id="demotext"></div>
     {% if user.is_authenticated %}
-    <hr><form method='POST' action="{% url 'community:create_comment' my_write.id %}" style='width:1000px;height:1px;'>
+    <hr><form method='POST' action="{% url 'community:create_comment' my_write.id %}" style='width:90%;height:1px;'>
         {% csrf_token %}
         {% bootstrap_form comment_form %}
         <button type='submit'>댓글 작성하기</button>
