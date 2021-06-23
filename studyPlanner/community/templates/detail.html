@@ -24,7 +24,7 @@
 
     <div class='nav'>
     <button type="button" class="create-btn1"><a href="{% url 'calender:calender' %}">Calender</a></button>&nbsp
-    <button type="button" class="create-btn2"><a href="{% url 'diary:diary' %}">Diary</a></button>&nbsp
+    <button type="button" class="create-btn2"><a href="{% url 'diary:diary' %}">Planner</a></button>&nbsp
     <button type="button" class="create-btn3"><a href="{% url 'community:community' %}">Community</a></button>
     </div>
 
@@ -63,7 +63,7 @@
     <div class='commentform'>
     {% for comment in comments %}
     <h4>{{comment.user}}</h4>
-    
+
     <div class='comment'>
     {{comment.content}}
     &nbsp <a href="{% url 'community:delete_comment' write_id=my_write.id comment_id=comment.id %}">삭제하기</a><br><br>
