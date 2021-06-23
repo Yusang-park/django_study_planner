@@ -3,8 +3,8 @@ from django.db.models.deletion import CASCADE
 from django.contrib.auth.models import User
 
 class Write(models.Model):
-    title= models.CharField(max_length=100)
-    user= models.ForeignKey(User,related_name='write',on_delete=CASCADE,null=True)
+    title= models.CharField(max_length=100, default='')
+    
     mainphoto = models.ImageField(null=True,blank=True)
     contents= models.TextField()
     updated_at= models.DateTimeField(auto_now=True)
