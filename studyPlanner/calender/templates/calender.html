@@ -45,7 +45,7 @@
 
      <div class="calender_container">
      <div class="calender_year_container">
-     {% if today != undefined %}
+     {% if today != 0 %}
      <a href="{% url 'calender:calender' %}" id="go_to_now_text_selected" >GO to NOW</a>
      {% else %}
      <a href="{% url 'calender:calender' %}" id="go_to_now_text" >GO to NOW</a>
@@ -70,7 +70,7 @@
      </div>
      
      <script>
-        drawCalender({{year}}, {{month}} , {{today}}, {{todo_lists_js|safe}})
+        drawCalender({{year}}, {{month}}, {{today}}, {{todo_lists_js|safe}})
     </script>
     </div>
     
