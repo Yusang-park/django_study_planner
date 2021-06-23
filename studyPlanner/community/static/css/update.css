@@ -1,4 +1,5 @@
 body{
+    padding:50px;
     background-image: url('background.jpg');
 }
 
@@ -11,24 +12,22 @@ body{
 }
 
 .container2{
-    width: 1150px;
+    width: 70%; 
     height: 800px;
-    margin-top: 70px;
-    margin-left: 190px;
-    padding-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
-    margin-bottom: 100px;
+    border: 4px solid rgba(129, 171, 88, 0.3);
+    border-radius: 30px;
+    margin: 10px auto;
+    padding: 50px;
     background-color: rgb(247,247,247);
 }
 
 header {
     text-align: center;
     color: white;
-    margin-left: 560px;
-    margin-top: 70px;
+    margin: 0 auto;
 }
 
 header {
@@ -76,9 +75,10 @@ header:after {
 
 .nav{
     display: flex;
-    flex-direction: row;
-    margin:50px 0 0 1000px;
-    margin-bottom: 100px;
+    margin:0 auto;
+    padding: 50px;
+    justify-content: flex-end;
+    gap: 6px;
 }
 
 .create-btn1{ 
