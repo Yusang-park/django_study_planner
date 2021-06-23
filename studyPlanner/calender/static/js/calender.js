@@ -4,18 +4,28 @@
 function printYearMonth(year, month, today) {
     let month_toEnglish = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
-    document.write(`<h1> ${today} <h1> <h2>${getWeekname(getWeeknameIndex(year, month, today))} </h2>`);
+
+    if (today == undefined) {
+        document.write(`<div class="calender_info_container"><span id="dayText">${year}</span><h2>${month_toEnglish[month - 1]}</h2></div>`);
+    }
+    else
+        document.write(`<span id="dayText">${today}</span><h2>, ${getWeekname(getWeeknameIndex(year, month, today))}</h2>`);
     // document.write(`<h2> ${today} <br> ${month_toEnglish[month - 1]} </h2>`);
     // , ${ year }
 }
 
+function printMonthName(monthIndex) {
+    let month_toEnglish = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    document.write(month_toEnglish[monthIndex - 1]);
+}
 function getWeeknameIndex(year, month, dayIndex) {
     var today = year + '/' + month + '/' + dayIndex;
     return new Date(today).getDay();
 }
 
 function getWeekname(weeknameIndex) {
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
     return days[weeknameIndex];
 }
 
@@ -27,7 +37,7 @@ function getMonthDayLength(monthIndex) {
     return dayLengthList[monthIndex];
 }
 
-function drawCalender(year, month) {
+function drawCalender(year, month, today) {
     let weeknameOfFirstDay = getWeeknameIndex(year, month, 1);
     let dayIndex = '';
     let monthDayLength = getMonthDayLength(month - 1);
@@ -50,13 +60,20 @@ function drawCalender(year, month) {
             if (dayIndex == '' && i == weeknameOfFirstDay && loop) {
                 dayIndex = 1;
             }
-
-            document.write(
-                `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
+            if (dayIndex == today)
+                document.write(
+                    `<span class='daily_container' id='daily_container_${columnIndex}_${i}' style="color:green;">
              
             ${dayIndex}
             </span>`
-            );
+                );
+            else
+                document.write(
+                    `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
+             
+            ${dayIndex}
+            </span>`
+                );
 
             if (dayIndex > 0 && dayIndex < monthDayLength) {
                 dayIndex++;
