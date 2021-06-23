@@ -5,7 +5,7 @@ function printYearMonth(year, month, today) {
     let month_toEnglish = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December']
 
-    if (today == undefined) {
+    if (today == 0) {
         document.write(`<div class="calender_info_container"><span id="dayText">${year}</span><h2>${month_toEnglish[month - 1]}</h2></div>`);
     }
     else
@@ -43,6 +43,7 @@ function drawCalender(year, month, today, todo_lists_js) {
     let monthDayLength = getMonthDayLength(month - 1);
     let loop = true;
     let columnIndex = 0;
+
 
 
 
