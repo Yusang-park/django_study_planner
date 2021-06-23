@@ -37,12 +37,16 @@ function getMonthDayLength(monthIndex) {
     return dayLengthList[monthIndex];
 }
 
-function drawCalender(year, month, today) {
+function drawCalender(year, month, today, todo_lists_js) {
     let weeknameOfFirstDay = getWeeknameIndex(year, month, 1);
     let dayIndex = '';
     let monthDayLength = getMonthDayLength(month - 1);
     let loop = true;
     let columnIndex = 0;
+
+
+
+
 
     document.write('<div class="calender">');
     document.write('<div class="calender_row">');
@@ -60,21 +64,65 @@ function drawCalender(year, month, today) {
             if (dayIndex == '' && i == weeknameOfFirstDay && loop) {
                 dayIndex = 1;
             }
-            if (dayIndex == today)
+            if (dayIndex == today) {
                 document.write(
                     `<span class='daily_container' id='daily_container_${columnIndex}_${i}' style="color:green;">
-             
-            ${dayIndex}
+             ${dayIndex}
+            <div>`);
+
+
+                for (let i = 0; i < todo_lists_js.length; i++) {
+                    if (todo_lists_js[i].date == year + '/' + month + '/' + today) {
+
+                        if (todo_lists_js[i].checkBox == 1) {
+                            document.write(
+                                `<div id="todo_text"  style="text-decoration:line-through">${todo_lists_js[i].todo}</div>`
+                            );
+                        } else {
+                            document.write(
+                                `<div id="todo_text">${todo_lists_js[i].todo}</div>`
+                            );
+                        }
+                    }
+                }
+
+                document.write(`
+            </div>
             </span>`
                 );
-            else
+            }
+            else {
                 document.write(
                     `<span class='daily_container' id='daily_container_${columnIndex}_${i}'>
-             
-            ${dayIndex}
+             ${dayIndex}
+            <div>`);
+
+                for (let i = 0; i < todo_lists_js.length; i++) {
+                    if (todo_lists_js[i].date == year + '/' + month + '/' + dayIndex) {
+
+                        if (todo_lists_js[i].checkBox == 1) {
+                            document.write(
+                                `<div id="todo_text"  style="text-decoration:line-through">${todo_lists_js[i].todo}</div>`
+                            );
+                        } else {
+                            document.write(
+                                `<div id="todo_text">${todo_lists_js[i].todo}</div>`
+                            );
+                        }
+                    }
+                }
+
+
+
+
+                document.write(`
+</div>
+
+
+
             </span>`
                 );
-
+            }
             if (dayIndex > 0 && dayIndex < monthDayLength) {
                 dayIndex++;
             } else if (dayIndex == monthDayLength) {
@@ -82,6 +130,7 @@ function drawCalender(year, month, today) {
                 loop = false;
             }
         }
+
         document.write('</div>');
 
         columnIndex++;

@@ -83,7 +83,7 @@
                 <br>
                 <br>
         
-                <div class="title">오늘 할일</div>
+                <div class="title">오늘 할 일</div>
                 <div class="outer-todo"> 
                     <ol>
                         {% for todo_list in todo_lists %}
@@ -124,7 +124,10 @@
         <br>
         
     </div>
-    <a class="bottom_content" href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
+    <div class="bottom_content" >
+        <a href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
+
+    </div>
            
 </body>
 </html>

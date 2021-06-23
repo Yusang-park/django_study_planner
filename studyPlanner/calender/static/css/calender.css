@@ -1,8 +1,18 @@
 
 a{
     text-decoration:none;
+    
+    font-family: 'GmarketSansMedium';
 }
-
+html,body {
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    font-family: 'GmarketSansLight';
+    background-image: url("../backimage.jpg");
+    width: 100%;
+    height: 100%;
+}
 *{
     
     margin: 0px;
@@ -15,9 +25,35 @@ a{
     right:8%;
 }
 
+.topBarBtns{
+    position: absolute;
+    top:3%;
+    left : 8%;
+}
+
+button {
+    text-decoration: none;
+    font-family: 'GmarketSansMedium';
+    border: 1px solid rgb(129, 171, 88);
+    background-color: rgba(0,0,0,0);
+    color: rgb(129, 171, 88);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+button > a {
+    text-decoration: none;
+    
+    color: rgb(129, 171, 88);
+}
+
 .calender_info_container{
  text-align: center;
  
+}
+#todo_text{
+    font-size:12px;
+color: #838282;
 }
 
 #arrow{
@@ -27,7 +63,7 @@ a{
 
 .another_month_btn_selected{
     font-weight: bold;
-     color:rgba(96, 190, 115, 1);
+     color:rgb(129, 171, 88);
 }
 
 .calender_month_container{
@@ -49,7 +85,7 @@ margin-bottom:13px;
 #go_to_now_text_selected{
     text-decoration:none;
     font-size:16px;
-    color: rgba(96, 190, 115, 1);
+    color: rgb(129, 171, 88);
 }
 
 #dayText
@@ -75,7 +111,7 @@ font-weight: bold;
 }
 
 .weekname_container{
-    margin-bottom: 4px;
+    margin-bottom: 8px;
     font-size:22px;
     font-weight: bold;
     width: 15%;
@@ -124,6 +160,7 @@ body{
 
 
 .container{
+        box-shadow: 10px 5px 5px #aaaaaa;
     display: flex;
     background-color:white;
     border-radius: 20px;
@@ -137,5 +174,27 @@ body{
  justify-content:center;
  color:aliceblue;   
     width:30%;
-    background-color:rgba(96, 190, 115, 1);
+      background-color: rgb(129, 171, 88);
+}
+
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
