@@ -46,7 +46,7 @@ header:after {
 
 }
 
-a{
+.create-btn a{
     text-decoration: none;
     width: 100%;
     color:white;
