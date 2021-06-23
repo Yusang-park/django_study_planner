@@ -83,28 +83,27 @@
                 <br>
         
                 <div class="title">오늘 할일</div>
-                <form action="{% url 'diary:checkedTodo' %}" method="POST">
-                    {% csrf_token %}
+                <div class="outer-todo"> 
                     <ol>
                         {% for todo_list in todo_lists %}
                         <li> 
                             <div class="todo_list">
                             <!-- 할 일 이름 / checkbox가 True일 때 취소선 -->
-                            <div class="todo">
-                                {% if todo_list.checkbox == True %}
-                                <strike>{{ todo_list.todothing }}</strike>
-                                {% else %}
-                                <span>{{ todo_list.todothing }}</span>
-                                {% endif %}
-                            </div>
-                            <input type="checkbox" id="checked" name="checked" value="{{ todo_list.id }}">
+                                <span class="todo">
+                                    {% if todo_list.checkbox == True %}
+                                    <a href="{% url 'diary:changeTodo' todo_list.id %}"><strike>{{ todo_list.todothing }}</strike></a>
+                                    {% else %}
+                                    <a href="{% url 'diary:changeTodo' todo_list.id %}"><span>{{ todo_list.todothing }}</span></a>
+                                    {% endif %}
+                                </span>
+                                <!-- 휴지통 아이콘이 리스트 각각 달리도록. 링크 달아서 누르면 삭제하는 기능으로 이동 -->
+                                <a href="{% url 'diary:deleteTodo' todo_list.id %}"><span style="font-size: small;">&#128465;</span></a>
                             </div>
                         </li> 
                         {% endfor %}
-                    </ol>   
-                    <input class='kindbutton' type="submit" name="check" value="check">
-                    <input class='kindbutton' type="submit" name="delete" value="delete">
-                </form>  
+                    </ol> 
+                </div>  
+                
         
                 <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
                 <form action="{% url 'diary:addTodo' %}" method="POST">
@@ -122,8 +121,9 @@
             </div>
         </div>
         <br>
+        <a class="bottom_content" href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
     </div>
-    <a class="bottom_content" href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
+    
            
 </body>
 </html>
