@@ -37,7 +37,6 @@ def update(request,write_id):
 
 def delete(request,write_id):
     my_write = get_object_or_404(Write,pk=write_id)
-    my_write.delete()
     return redirect('community:community')
 
 def create_comment(request,write_id):
@@ -52,8 +51,12 @@ def create_comment(request,write_id):
         return redirect('community:detail',write_id)
 
 def delete_comment(request,write_id,comment_id):
+    login_session = request.user
     my_comment = get_object_or_404(Comment, id=comment_id)
-    my_comment.delete()
+    if my_comment.user == login_session:
+        my_comment.delete()
+    else:
+        return redirect('community:detail',write_id)
     return redirect('community:detail',write_id)
       
         
