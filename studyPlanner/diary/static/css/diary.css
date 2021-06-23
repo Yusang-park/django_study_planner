@@ -9,9 +9,9 @@ html,body {
 }
 .container{
     border-radius: 30px;
-    margin: 10px auto;
+    margin: 20px auto;
     padding: 13px;
-    height: 83%;
+    height: 75%;
     width: 70%;
     background-color: rgb(247, 247, 247);
 }
@@ -100,7 +100,7 @@ img{
     margin: 0 auto;
     width: 70%;
     justify-content: space-between;
-    padding-top: 5px;
+    padding-top: 20px;
     align-items: center;
 }
 
