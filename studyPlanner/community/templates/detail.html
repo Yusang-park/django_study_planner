@@ -49,7 +49,7 @@
     {% endif %}
     </div>
 
-    <div id="demotext"></div>
+    
     {% if user.is_authenticated %}
     <hr><form method='POST' action="{% url 'community:create_comment' my_write.id %}" style='width:90%;height:1px;'>
         {% csrf_token %}
@@ -60,17 +60,18 @@
     <br><br><h3>📢 로그인한 유저만 댓글을 남길 수 있습니다!</h3>
     {% endif %}
 
+    </div>
+    <br>
+    <div id="demotext"></div>
     <div class='commentform'>
-    {% for comment in comments %}
-    <h4>{{comment.user}}</h4>
-    
-    <div class='comment'>
-    {{comment.content}}
-    &nbsp <a href="{% url 'community:delete_comment' write_id=my_write.id comment_id=comment.id %}">삭제하기</a><br><br>
-    {% endfor %}
-    </div>
-    </div>
-
+        {% for comment in comments %}
+        <h4>{{comment.user}}</h4>
+        
+        <div class='comment'>
+        {{comment.content}}
+        &nbsp <a href="{% url 'community:delete_comment' write_id=my_write.id comment_id=comment.id %}">삭제하기</a><br><br>
+        {% endfor %}
+        </div>
     </div>
 </body>
 </html>
