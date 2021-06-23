@@ -3,11 +3,11 @@ body{
 }
 
 *{
-    font-family: G마켓 산스 TTF;
+    font-family: G마켓 산스 TTF Medium;
 }
 
 .title{
-    padding-top: 20px;
+    padding-top: 25px;
 }
 
 .container2{
@@ -109,14 +109,7 @@ header:after {
     font-size: medium;
 }
 
-.create-btn1 a{
+.create-btn1 a, .create-btn2 a, .create-btn3 a{
     color: white;
 }
 
-.create-btn2 a{
-    color: white;
-}
-
-.create-btn3 a{
-    color: white;
-}
