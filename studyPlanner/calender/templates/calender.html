@@ -1,5 +1,7 @@
 {% load filters %}
 {% load static %}
+
+{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,28 +17,60 @@
 </head>
 <body>
 
+
+
+{% if user.is_authenticated %}
+
+
+<span class="topBar">{{user}}님 안녕하세요. <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button></span>
+
+
+{% else %}
+<span class="topBar"><a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}" style="width:125px;"></a></span>
+
+{% endif %}
+
+
 <div class="container">
+
     <div class="info_container">
+    
     <script>
     printYearMonth({{year}}, {{month}}, {{today}})
     </script>
     </div>
+
      <div class="calender_container">
-     <a href="{% url 'calender:change_calender' year=previous_year month=1 %}"><</a>
+     <div class="calender_year_container">
+     {% if today != undefined %}
+     <a href="{% url 'calender:calender' %}" id="go_to_now_text_selected" >GO to NOW</a>
+     {% else %}
+     <a href="{% url 'calender:calender' %}" id="go_to_now_text" >GO to NOW</a>
+     {% endif %}
+     <a href="{% url 'calender:change_calender' year=previous_year month=1 %}"   id="arrow" ><</a>
 {{year}}
-<a href="{% url 'calender:change_calender' year=next_year month=1 %}">></a>
-     <a href="{% url 'calender:calender' %}">현재로</a>
+<a href="{% url 'calender:change_calender' year=next_year month=1 %}"    id="arrow">></a>
+</div>
+<br>
+
+       <div class="calender_month_container">
      {% for value in 13|ranges %}
-     <span>asdfsdaf</span>
-        <a  href="{% url 'calender:change_calender' year=year month=value %}" class="another_month_btn" >{{value}}</a>
+        {% if value == month %} 
+        <a href="{% url 'calender:change_calender' year=year month=value %}" class="another_month_btn_selected" ><script>printMonthName({{value}})</script></a>
+        {% else %}
+        <a href="{% url 'calender:change_calender' year=year month=value %}" class="another_month_btn" ><script>printMonthName({{value}})</script></a>
+
+         {% endif %}
      {% endfor %}
+     </div>
      <script>
-        drawCalender({{year}}, {{month}})
+        drawCalender({{year}}, {{month}} , {{today}})
     </script>
     </div>
+    
 </div>
-{% comment %} 
 
+{% comment %} 
 
 
 
