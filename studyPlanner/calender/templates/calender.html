@@ -22,7 +22,10 @@
 {% if user.is_authenticated %}
 
 
-<span class="topBar">{{user}}님 안녕하세요. <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button></span>
+<span class="topBarBtns">
+<button type="submit"><a href="{% url 'diary:diary' %}">플래너로</a></button>
+            <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button> </span>
+<span class="topBar"> {{user}}님 <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button></span>
 
 
 {% else %}
@@ -62,9 +65,12 @@
 
          {% endif %}
      {% endfor %}
+
+     
      </div>
+     
      <script>
-        drawCalender({{year}}, {{month}} , {{today}})
+        drawCalender({{year}}, {{month}} , {{today}}, {{todo_lists_js|safe}})
     </script>
     </div>
     
