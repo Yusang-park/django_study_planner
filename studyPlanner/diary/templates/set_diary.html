@@ -1,0 +1,92 @@
+{% load static %}
+{% load socialaccount %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- css연결 -->
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'css/diary.css' %}">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div class="top_content">
+        <div class="nav">
+            <button type="submit"><a href="{% url 'calender:calender' %}">캘린더로</a></button>
+            <button type="submit"><a href="{% url 'community:community' %}">커뮤니티로</a></button>    
+            
+        </div>
+
+        <div class="my">
+            {% if user.is_authenticated %}
+            {{user.username}}님
+            <button type="submit"><a href="{% url 'diary:setDday' %}">목표날짜설정</a></button>
+            <button type="button" class="create-btn"><a href="{% url 'diary:logout' %}">로그아웃</a></button>
+            {% endif %}
+    
+    
+            {% if not user.is_authenticated%}
+            <!-- 로그인 로그아웃 -->
+            <a href= "{% provider_login_url 'kakao' %}"><img src="{% static 'kakao_login_medium_narrow.png' %}"></a>
+            {%endif%}
+        </div>
+
+    </div>    
+    <div class="container">
+        <div class="days">
+            <h2 id="today">{{daily_form.date}}</h2>
+            <script type = "text/javascript">
+                var today = new Date();
+                document.querySelector("#today").innerHTML = today.getFullYear()+'년 '+(today.getMonth()+1)+'월 '+today.getDate()+'일'; 
+            </script>
+        
+            {% if d_day.goal_day %}
+            <h2 id = "dday"></h2>
+            <script type = "text/javascript">
+                var today = new Date();
+                var goalday = "{{d_day.goal_day}}";
+                var goalday = new Date(goalday);
+        
+                var todayMilli = today.getTime();
+                var goalMilli = goalday.getTime();
+                var clacDay = 24*3600*1000;
+                var remainday = Math.round((goalMilli - todayMilli)/clacDay);
+                if (remainday>0) {
+                    document.querySelector("#dday").innerHTML = "D-"+remainday; 
+                } else{
+                    document.querySelector("#dday").innerHTML = "D+"+(-remainday); 
+                }
+                
+            </script>
+            {%endif%}
+    
+        </div>
+
+        <form action="{% url 'diary:setDiary' %}" method="POST">
+            {% csrf_token %}
+            <div class="content-top">
+                <div class="content">
+                    <div class="title">오늘의 목표</div>
+                    {{daily_form.goal}}
+                </div>
+                <div class="content">
+                    <div class="title">공부 시간</div>
+                    {{daily_form.studytime_h}}시간 {{daily_form.studytime_m}}분
+                </div>
+            </div>
+            <br>
+            <br>
+            <div>
+                <div class="title">오늘의 일기</div>
+                {{daily_form.feelings}}
+            </div>
+            
+            <button type="submit">저장</button>
+        </form>
+    </div>
+</body>
+</html>

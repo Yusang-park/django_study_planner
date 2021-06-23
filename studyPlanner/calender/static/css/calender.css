@@ -1,14 +1,86 @@
+
+a{
+    text-decoration:none;
+}
+
 *{
     
     margin: 0px;
 
 }
 
+.topBar{
+    position:absolute;
+    top:3%;
+    right:8%;
+}
+
+.calender_info_container{
+ text-align: center;
+ 
+}
+
+#arrow{
+    font-size:24px;
+     color: #838282;
+}
+
+.another_month_btn_selected{
+    font-weight: bold;
+     color:rgba(96, 190, 115, 1);
+}
+
+.calender_month_container{
+    display: flex;
+    justify-content:space-around;
+border-bottom: 1px solid #AAAAAA;
+font-size:16px;
+margin-bottom:13px;
+}
+
+#go_to_now_text{
+    text-decoration:none;
+    font-size:16px;
+    color: #AAAAAA;
+}
+
+
+
+#go_to_now_text_selected{
+    text-decoration:none;
+    font-size:16px;
+    color: rgba(96, 190, 115, 1);
+}
+
+#dayText
+{
+font-size: 64px;
+font-weight: bold;
+}
+.calender_year_container{
+    width:100%;
+    text-align: end;
+    color: #AAAAAA;
+    font-weight: bold;
+    font-size: 32px;
+
+}
+
+
 .weekname_container_0{
     background-color: red;
 }
 .weekname_container_6{
     background-color: blue;
+}
+
+.weekname_container{
+    margin-bottom: 4px;
+    font-size:22px;
+    font-weight: bold;
+    width: 15%;
+    text-align: start;
+    color: #838282;
 }
 
 .another_month_btn{
@@ -20,14 +92,17 @@
 
 .calender_row{
     width: 100%;
-    margin:0px;
-    display: inline-flex;
+    margin-left: 12px;
+    margin-right: 12px;
+    
+    display: flex;
 }
 
 .daily_container  {
+font-weight: bold;
     width: 15%;
-    height: 10vh;
-    border-style: solid;
+    height: 11vh;
+    /* border-style: solid; */
 }
 
 html{
@@ -46,6 +121,8 @@ body{
     padding:10px
 }
 
+
+
 .container{
     display: flex;
     background-color:white;
@@ -57,6 +134,8 @@ body{
     border-radius: 20px 0px 0px 20px;
     display: flex;
     align-items:center;
+ justify-content:center;
+ color:aliceblue;   
     width:30%;
-    background-color:green;
+    background-color:rgba(96, 190, 115, 1);
 }
