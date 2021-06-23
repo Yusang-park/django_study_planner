@@ -26,11 +26,7 @@ urlpatterns = [
     
     path('community/',include('community.urls')),
     path('accounts/', include('allauth.urls')),
-<<<<<<< HEAD
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)+ static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
-=======
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
->>>>>>> 464fb9d6bfd8a42c304c55172ab61be120f17736
 
 
 # 0. 앱 생성, install 설정
