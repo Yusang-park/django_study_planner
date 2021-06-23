@@ -106,7 +106,7 @@
                 
         
                 <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
-                <form action="{% url 'diary:addTodo' %}" method="POST">
+                <form class="todoform" action="{% url 'diary:addTodo' %}" method="POST">
                     {% csrf_token %}
                     <!-- 공부 계획 입력하기 -->
                     {{ todo_form.todothing }} 
