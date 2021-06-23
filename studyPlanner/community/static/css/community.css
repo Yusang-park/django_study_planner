@@ -1,7 +1,6 @@
 body{
     padding:50px;
     margin-left: 10px;
-    padding-left: 90px;   
     background-color: rgb(247,247,247);
     background-image: url('background.jpg');
     
@@ -87,6 +86,7 @@ a{
 }
 
 .content{
+    padding-left: 45px;
     padding-top: 50px;
     padding-bottom: 50px;
     border: 4px solid rgba(129, 171, 88, 0.3);
