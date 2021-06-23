@@ -1,3 +1,103 @@
-div{
-    background-color: aqua;
+body {
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    font-family: 'GmarketSansLight';
+    background-image: url("../backimage.jpg");
+}
+.container{
+    border-radius: 30px;
+    margin: 10px auto;
+    height: 100%;
+    width: 70%;
+    background-color: rgb(247, 247, 247);
+}
+.title{
+    background-color: rgb(129, 171, 88);
+    font-family: 'GmarketSansMedium';
+    height:max-content;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+button{
+    text-decoration: none;
+    font-family: 'GmarketSansMedium';
+    border: 1px solid rgb(129, 171, 88);
+    background-color: rgba(0,0,0,0);
+    color: rgb(129, 171, 88);
+    padding: 5px;
+    border-radius: 5px;
+}
+a{
+    text-decoration: none;
+    color: rgb(129, 171, 88);
+}
+.kindbutton{
+    text-decoration: none;
+    font-family: 'GmarketSansMedium';
+    border: 1px solid rgb(129, 171, 88);
+    background-color: rgba(0,0,0,0);
+    color: rgb(129, 171, 88);
+    padding: 5px;
+    border-radius: 5px;
+}
+.top_content{
+    display: flex;
+    margin: 0 auto;
+    width: 70%;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+h2{
+    font-family: 'GmarketSansBold';
+}
+
+.days{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-inline: 30px;
+}
+
+#id_goal{
+    border-style: none;
+    font-family: 'GmarketSansLight';
+}
+
+.content-top{
+    display: flex;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+.todaygoal{
+    width: inherit;
+}
+
+#id_studytime_h, #id_studytime_m{
+    width: 50px;
+}
+
+.content{
+    flex-grow: 1;
 }
