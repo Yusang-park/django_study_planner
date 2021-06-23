@@ -4,6 +4,13 @@ a{
     
     font-family: 'GmarketSansMedium';
 }
+
+.today_text{
+    text-decoration:none;
+    color: rgb(129, 171, 88);
+    font-family: 'GmarketSansMedium';
+
+}
 html,body {
     margin: 0 auto;
     justify-content: center;
