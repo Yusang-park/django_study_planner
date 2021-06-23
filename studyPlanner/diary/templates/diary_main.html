@@ -82,7 +82,12 @@
                 <br>
                 <br>
         
-                <div class="title">오늘 할일</div>
+                <div class="title">오늘 할일
+                    <div class="kindbutton-group">
+                        <input class='kindbutton2' type="submit" name="check" value="check">
+                        <input class='kindbutton2' type="submit" name="delete" value="delete">
+                    </div> 
+                </div>
                 <form action="{% url 'diary:checkedTodo' %}" method="POST">
                     {% csrf_token %}
                     <ol>
@@ -101,13 +106,13 @@
                             </div>
                         </li> 
                         {% endfor %}
-                    </ol>   
-                    <input class='kindbutton' type="submit" name="check" value="check">
-                    <input class='kindbutton' type="submit" name="delete" value="delete">
+                    </ol>  
+
+
                 </form>  
         
                 <!-- 위에는 입력한 값이 나열되고 아래에는 입력창 만들기 -->
-                <form action="{% url 'diary:addTodo' %}" method="POST">
+                <form class="todoform" action="{% url 'diary:addTodo' %}" method="POST">
                     {% csrf_token %}
                     <!-- 공부 계획 입력하기 -->
                     {{ todo_form.todothing }} 

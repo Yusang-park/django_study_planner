@@ -66,7 +66,7 @@
     
         </div>
 
-        <form action="{% url 'diary:setDiary' %}" method="POST">
+        <form class="todoform1" action="{% url 'diary:setDiary' %}" method="POST">
             {% csrf_token %}
             <div class="content-top">
                 <div class="content">
@@ -84,8 +84,11 @@
                 <div class="title">오늘의 일기</div>
                 {{daily_form.feelings}}
             </div>
-            
-            <button type="submit">저장</button>
+    </div>
+        
+    
+    <div class="bottom_content">
+        <button type="submit">저장</button>
         </form>
     </div>
 </body>
