@@ -97,7 +97,7 @@
                                     {% endif %}
                                 </span>
                                 <!-- 휴지통 아이콘이 리스트 각각 달리도록. 링크 달아서 누르면 삭제하는 기능으로 이동 -->
-                                <a href="{% url 'diary:deleteTodo' todo_list.id %}"><span style="font-size: small;">&#128465;</span></a>
+                                <a class="trashbin" href="{% url 'diary:deleteTodo' todo_list.id %}"><span style="font-size: small;">&#128465;</span></a>
                             </div>
                         </li> 
                         {% endfor %}
@@ -121,9 +121,9 @@
             </div>
         </div>
         <br>
-        <a class="bottom_content" href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
+        
     </div>
-    
+    <a class="bottom_content" href="{% url 'diary:setDiary' %}"><button>수정하기</button></a>
            
 </body>
 </html>
